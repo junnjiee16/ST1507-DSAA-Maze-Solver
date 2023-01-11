@@ -1,6 +1,16 @@
 import turtle
 import os
 
+# create moving arrow
+class Arrow(turtle.Turtle):
+    def __init__(self):
+        turtle.Turtle.__init__(self)
+        self.hideturtle()  
+        self.penup() # so that arrow does not draw
+        self.color("red")
+        self.goto(-288, 288)
+        self.showturtle()
+
 # create tiles of different colors across the map
 class Tile(turtle.Turtle):
     def __init__(self):
@@ -12,14 +22,12 @@ class Tile(turtle.Turtle):
         self.pencolor('black') # color of the square border
         self.penup() # no drawing when moving 
         self.speed(0) # fastest speed
-        self.showturtle()
 
-
-starting_x = -288
-starting_y = 288
 
 # function to create map
 def create_map(map_layout):
+    tile = Tile()
+
     window = turtle.Screen()
     window.title("PIZZA RUNNERS: Done by Lim Jun Jie, Timothy Chia, DAAA/FT/2B/02") # create the titlebar
     window.setup(700,700)
@@ -27,8 +35,8 @@ def create_map(map_layout):
     for y_pos in range(len(map_layout)):
         for x_pos in range(len(map_layout[y_pos])):
             # calculate position of grid
-            grid_x_pos = starting_x + (24 * x_pos)
-            grid_y_pos = starting_y - (24 * y_pos)
+            grid_x_pos = -288 + (24 * x_pos)
+            grid_y_pos = 288 - (24 * y_pos)
 
             # check if it is a wall
             if map_layout[y_pos][x_pos] == "X":
@@ -48,16 +56,11 @@ def create_map(map_layout):
             tile.goto(grid_x_pos, grid_y_pos)
             tile.stamp()
 
+    arrow = Arrow()
+
     # exit application when any part of turtle screen display is clicked (except for top bar)
     window.mainloop()
 
-
-
-#####################################
-# main program
-#####################################
-# create map
-tile = Tile()
 
 # open and read map file
 script_dir = os.path.dirname(os.path.abspath(__file__)) # get absolute path of current device leading to this script, then get directory
@@ -68,6 +71,4 @@ with open(abs_file_path) as f:
     map_layout = f.readlines()
 map_layout = [x.strip() for x in map_layout]
 
-
-# create map using function
 create_map(map_layout)
