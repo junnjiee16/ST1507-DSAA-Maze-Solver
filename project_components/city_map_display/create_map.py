@@ -15,6 +15,32 @@ class Tile(turtle.Turtle):
         self.showturtle()
 
 
+# create file manager class
+class FileManager:
+    def __init__(self, filename):
+        self.path = os.path.dirname(os.path.abspath(__file__)) # get the directory of the absolute path leading to this specific script
+        self.abs_file_path = os.path.join(self.path, filename)
+
+    def readFile(self):
+        with open(self.abs_file_path) as f:
+            map_layout = f.readlines()
+        map_layout = [x.strip() for x in map_layout]
+
+        return map_layout
+
+
+# arrow class
+class Arrow:
+    def __init__(self):
+        pass
+
+
+# create map class
+class Map:
+    def __init__(self):
+        pass
+
+
 starting_x = -288
 starting_y = 288
 
@@ -36,9 +62,9 @@ def create_map(map_layout):
 
             # check if it is start/end point
             elif map_layout[y_pos][x_pos] == "s":
-                tile.fillcolor('green')
+                tile.fillcolor('#61ff6e')
             elif map_layout[y_pos][x_pos] == "e":
-                tile.fillcolor('blue')
+                tile.fillcolor('#56defc')
 
             # if not anything else, it is normal road
             else:

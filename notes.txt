@@ -1,0 +1,13 @@
+- graphics, and interactivity capabilities of the application must be implemented 
+through the Turtle library
+
+- must display the algorithm name, and the number of steps the application 
+took/has taken, in the window’s title bar
+
+- should be possible for the user to switch between algorithms with a key press. You 
+should use the tab key for this
+
+- application must at least support city maps with dimensions, of 8 rows by 12 
+columns (as shown in screenshot example)
+
+- OOP classes that you develop must be placed in separate python files
