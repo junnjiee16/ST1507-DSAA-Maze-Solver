@@ -1,87 +1,102 @@
-<mxfile host="app.diagrams.net" modified="2023-01-11T16:39:50.522Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76" etag="PYoWSpPpjvIeZ-KKmMoS" version="20.8.3" type="github">
-  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1733" dy="945" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+<mxfile host="app.diagrams.net" modified="2023-01-12T08:44:24.358Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76" etag="UbHDp873fpsVCP4qmkvO" version="20.8.4" type="github">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Class Design">
+    <mxGraphModel dx="1431" dy="773" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-0" target="dQ57IdhiGYJqUYmVvskk-16">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-0" target="dQ57IdhiGYJqUYmVvskk-16" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="170" y="480" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-0" value="Tile (inherits turtle class)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="80" y="160" width="240" height="220" as="geometry" />
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-0" value="Tile" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="80" y="160" width="240" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-2" value="Purpose: Tile object to put tiles down on the map&lt;br&gt;&lt;br&gt;use .stamp() to put tile on screen" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-0">
-          <mxGeometry y="30" width="240" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-3" value="__init__(self):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;color&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;shape&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;size&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;penup&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;speed&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;(and may have other stuff)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-0">
-          <mxGeometry y="100" width="240" height="120" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-0">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-8">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-13">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-5" value="Turtle class (from turtle library)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="370" y="20" width="180" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-8" target="dQ57IdhiGYJqUYmVvskk-16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-8" value="Arrow (inherits turtle class)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="610" y="160" width="240" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-9" value="Purpose: Create the moving arrow direct through the maze" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-8">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-2" value="Purpose: Tile object to store tile metadata" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-0" vertex="1">
           <mxGeometry y="30" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-11" value="__init__(self):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;color&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;penup&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;speed&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;(and may have other stuff)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-8">
-          <mxGeometry y="90" width="240" height="130" as="geometry" />
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-3" value="__init__(self):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;type&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;shape&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; color&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-0" vertex="1">
+          <mxGeometry y="90" width="240" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-13" value="Map (?)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-0" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-5" value="Turtle class (from turtle library)" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="370" y="90" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-8" target="dQ57IdhiGYJqUYmVvskk-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-8" value="Arrow (inherits turtle class)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="610" y="160" width="240" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-9" value="Purpose: Create the moving arrow direct through the maze" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-8" vertex="1">
+          <mxGeometry y="30" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-11" value="__init__(self):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;color&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;(and may have other stuff)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-8" vertex="1">
+          <mxGeometry y="90" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-13" value="Map (?)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="340" y="330" width="240" height="300" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-14" value="Purpose: to create a reusable map?" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-13">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-14" value="Purpose: to create a reusable map?" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-13" vertex="1">
           <mxGeometry y="30" width="240" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-15" value="Takes in a map text as input" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-13">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-15" value="Takes in a map text as input" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-13" vertex="1">
           <mxGeometry y="60" width="240" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-16" value="Makes use of composition to use tile object and arrow object in the map to create and navigate through the map" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-13">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-16" value="Makes use of composition to use tile object and arrow object in the map to create and navigate through the map" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-13" vertex="1">
           <mxGeometry y="100" width="240" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-21" value="def __init__(self):" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-13">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-21" value="def __init__(self):" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-13" vertex="1">
           <mxGeometry y="200" width="240" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-17" value="FileManager" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="50" y="680" width="240" height="220" as="geometry" />
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-17" value="FileManager" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="90" y="710" width="240" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-18" value="Purpose: to handle file I/O and get contents of text file" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-17">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-18" value="Purpose: to handle file I/O and get contents of text file" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-17" vertex="1">
           <mxGeometry y="30" width="240" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-19" value="takes in file path" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-17">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-19" value="takes in file path" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-17" vertex="1">
           <mxGeometry y="110" width="240" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-20" value="__init__(self, filepath):&lt;br&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-17">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-20" value="__init__(self, filepath):&lt;br&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-17" vertex="1">
           <mxGeometry y="140" width="240" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-32" value="PathFinder" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="360" y="680" width="330" height="180" as="geometry" />
+        <mxCell id="7FqHwzOTrSw8YaoyhYBU-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-32" target="dQ57IdhiGYJqUYmVvskk-21">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-33" value="Purpose: to use the chosen algorithm to solve the given maze&lt;br&gt;&lt;br&gt;has methods to use lefthand algo or second algo on the maze" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-32">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-32" value="PathFinder" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="550" y="720" width="330" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-33" value="Purpose: to use the chosen algorithm to solve the given maze&lt;br&gt;&lt;br&gt;has methods to use lefthand algo or second algo on the maze" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-32" vertex="1">
           <mxGeometry y="30" width="330" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-34" value="Takes in maze (?)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-32">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-34" value="Takes in maze (?)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-32" vertex="1">
           <mxGeometry y="120" width="330" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-35" value="Item 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dQ57IdhiGYJqUYmVvskk-32">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-35" value="Item 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-32" vertex="1">
           <mxGeometry y="150" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7FqHwzOTrSw8YaoyhYBU-6" value="Logic Controller" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="940" y="460" width="310" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="7FqHwzOTrSw8YaoyhYBU-7" value="Purpose: to control the logic of the whole program" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="7FqHwzOTrSw8YaoyhYBU-6">
+          <mxGeometry y="30" width="310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7FqHwzOTrSw8YaoyhYBU-8" value="Item 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="7FqHwzOTrSw8YaoyhYBU-6">
+          <mxGeometry y="60" width="310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7FqHwzOTrSw8YaoyhYBU-9" value="Item 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="7FqHwzOTrSw8YaoyhYBU-6">
+          <mxGeometry y="90" width="310" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
