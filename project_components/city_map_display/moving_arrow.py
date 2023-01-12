@@ -59,7 +59,7 @@ def create_map(map_layout):
     arrow = Arrow()
 
     # exit application when any part of turtle screen display is clicked (except for top bar)
-    window.mainloop()
+    window.exitonclick()
 
 
 # open and read map file
