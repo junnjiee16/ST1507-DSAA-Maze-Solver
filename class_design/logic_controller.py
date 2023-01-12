@@ -27,4 +27,4 @@ class LogicController:
 
 
         # this must be the last line in the turtle program
-        window.exitonclick()
+        window.mainloop()

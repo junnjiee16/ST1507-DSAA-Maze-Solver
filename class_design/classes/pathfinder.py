@@ -15,3 +15,5 @@ class Pathfinder:
         arrow.color('red')
         arrow.goto(-288, 288)
         arrow.showturtle()
+
+    
