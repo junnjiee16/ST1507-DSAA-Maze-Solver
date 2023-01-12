@@ -4,14 +4,16 @@ from classes.tile import Tile
 
 # map object, stores required data for the map
 class Map:
-    def __init__(self, map_layout):
+    def __init__(self, map_layout, start_position=None, end_position=None):
         self.map_layout = map_layout
+        self.__start_position = start_position
+        self.__end_position = end_position
 
         # process map for drawing on turtle
         self.processed_map = self.map_layout.split("\n") # split the map into a list of strings
 
-    def draw(self): # draw the map
 
+    def draw(self): # draw the map
         ### use turtle to place the tile on the screen
         tile_drawing = turtle.Turtle()
         tile_drawing.hideturtle()
@@ -22,6 +24,7 @@ class Map:
         tile_drawing.pencolor('black')
 
         ### draw the map by placing tiles according to map layout
+        # also find the start and end coordinates of the map while drawing it
         for y_pos in range(len(self.processed_map)): # y axis of map, starting from top (according to map layout in text file)
             for x_pos in range(len(self.processed_map[y_pos])): # x axis of map starting from left
                 # calculate position of grid
@@ -49,6 +52,3 @@ class Map:
 
                 # place down tile on the screen
                 tile_drawing.stamp()
-
-        # exit application when any part of turtle screen display is clicked (except for top bar)
-        # window.mainloop()

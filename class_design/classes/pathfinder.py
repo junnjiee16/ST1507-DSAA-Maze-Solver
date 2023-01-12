@@ -9,5 +9,9 @@ class Pathfinder:
     def guideArrow(self):
         # spawn arrow at start point
         arrow = turtle.Turtle()
+        arrow.hideturtle()
+        arrow.penup()
+        arrow.speed(0)
         arrow.color('red')
         arrow.goto(-288, 288)
+        arrow.showturtle()
