@@ -2,8 +2,6 @@ import turtle
 from classes.utils import Utils
 from classes.map import Map
 from classes.pathfinder import Pathfinder
-from classes.mazegraph import MazeGraph
-from classes.drone import Drone
 from classes.dronecontroller import DroneController
 
 

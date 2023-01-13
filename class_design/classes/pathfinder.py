@@ -1,5 +1,6 @@
 import turtle
 from classes.drone import Drone
+from classes.doublyCircularLinkedList import DoublyCircularLinkedList
 
 # object to guide the arrow through the maze with algorithm of choice
 class Pathfinder:
@@ -50,115 +51,99 @@ class Pathfinder:
         x, y = start_pos
 
         # array to store steps
-        coordinate_steps = []
+        route_instructions = []
 
-        # keep track of orientation
-        north = 90
-        east = 0
-        south = 270
-        west = 180
-        direction = ["N", "E", "S", "W"]
+        # keep track of orientation when moving through maze
+        compass = DoublyCircularLinkedList()
+        compass.add("E") # east
+        compass.add("S") # south
+        compass.add("W") # west
+        compass.add("N") # north
 
-        direction_index = 0
-        current_orientation = direction[direction_index]
+        # set starting orientation to east, this is default orientation the pen will face in turtle when it first starts
+        current_orientation = compass.head
         
         while (x, y) != end_pos:
+            print(x, y)
             ### call different functions based on orientation
             # check if can go left
-            if current_orientation == "N":
+            if current_orientation.data == "N":
                 next_node = self.go_west((x, y))
-                new_orientation = west
 
-            elif current_orientation == "E":
+            elif current_orientation.data == "E":
                 next_node = self.go_north((x, y))
-                new_orientation = north
 
-            elif current_orientation == "S":
+            elif current_orientation.data == "S":
                 next_node = self.go_east((x, y))
-                new_orientation = east
 
-            else:
+            elif current_orientation.data == "W":
                 next_node = self.go_south((x, y))
-                new_orientation = south
 
             if next_node in graph:
-                x, y = next_node
-                coordinate_steps.append(new_orientation)
-                coordinate_steps.append((x, y))
-                direction_index -=1
-                current_orientation = direction[direction_index]
+                x, y = next_node # update current position
+                current_orientation = current_orientation.prev # turn compass to left
+                route_instructions.append("L") # append the side to turn the drone to
+                route_instructions.append(next_node) # append the next coordinates to go to
                 continue
 
             # check if can go forward   
-            if current_orientation == "N":
+            if current_orientation.data == "N":
                 next_node = self.go_north((x, y))
 
-            elif current_orientation == "E":
+            elif current_orientation.data == "E":
                 next_node = self.go_east((x, y))
 
-            elif current_orientation == "S":
+            elif current_orientation.data == "S":
                 next_node = self.go_south((x, y))
 
-            else:
+            elif current_orientation.data == "W":
                 next_node = self.go_west((x, y))
 
             if next_node in graph:
-                x, y = next_node
-                coordinate_steps.append((x, y))
+                x, y = next_node # update current position
+                # no need to change orientation as drone is going straight
+                route_instructions.append(next_node) # append the next coordinates to go to
                 continue
 
             # check if can go right
-            if current_orientation == "N":
+            if current_orientation.data == "N":
                 next_node = self.go_east((x, y))
-                new_orientation = east
             
-            elif current_orientation == "E":
+            elif current_orientation.data == "E":
                 next_node = self.go_south((x, y))
-                new_orientation = south
 
-            elif current_orientation == "S":
+            elif current_orientation.data == "S":
                 next_node = self.go_west((x, y))
-                new_orientation = west
 
-            else:
+            elif current_orientation.data == "W":
                 next_node = self.go_north((x, y))
-                new_orientation = north
 
             if next_node in graph:
-                x, y = next_node
-                coordinate_steps.append(new_orientation)
-                coordinate_steps.append((x, y))
-                direction_index += 1
-                current_orientation = direction[direction_index]
+                x, y = next_node # update current position
+                current_orientation = current_orientation.next # turn compass to right
+                route_instructions.append("R") # append the side to turn the drone to
+                route_instructions.append(next_node)
                 continue
 
             # if all fails, go opposite direction
-            if current_orientation == "N":
+            if current_orientation.data == "N":
                 next_node = self.go_south((x, y))
-                new_orientation = south
 
-            elif current_orientation == "E":
+            elif current_orientation.data == "E":
                 next_node = self.go_west((x, y))
-                new_orientation = west
             
-            elif current_orientation == "S":
+            elif current_orientation.data == "S":
                 next_node = self.go_north((x, y))
-                new_orientation = north
 
-            else:
+            elif current_orientation.data == "W":
                 next_node = self.go_east((x, y))
-                new_orientation = east
 
-            x, y = next_node
-            coordinate_steps.append(new_orientation)
-            coordinate_steps.append((x, y))
-            direction_index += 2
-            current_orientation = direction[direction_index]
+            x, y = next_node # update current position
+            current_orientation = current_orientation.next.next # turn compass to opposite
+            route_instructions.append("B") # append the side to turn the drone to
+            route_instructions.append(next_node) # append the next coordinates to go to
 
-        return coordinate_steps
-
-
-
+        return route_instructions
 
 
     def __ShortestPathAlgorithm(self, map_graph, start_position, end_position):

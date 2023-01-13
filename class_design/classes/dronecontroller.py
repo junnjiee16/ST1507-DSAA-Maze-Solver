@@ -15,8 +15,15 @@ class DroneController:
     def driveDrone(drone, instructions):
         for step in instructions:
             # check if its a turn
-            if type(step) == int:
-                drone.setheading(step)
+            if step == "L":
+                drone.left(90)
+
+            elif step == "R":
+                drone.right(90)
+
+            elif step == "B":
+                drone.right(180)
+
             # if not, it is a forward step
             else:
                 drone.goto(step[0] * 24, step[1] * 24)
