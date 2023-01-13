@@ -1,5 +1,4 @@
 import turtle
-from classes.tile import Tile
 
 
 # map object, stores necessary metadata for the map
@@ -54,6 +53,7 @@ class Map:
         # also find the start and end coordinates of the map while drawing it
         for y_pos in range(len(self.__processed_map)): # y axis of map, starting from top (according to map layout in text file)
             for x_pos in range(len(self.__processed_map[y_pos])): # x axis of map starting from left
+                
                 # reverse y_pos to start from bottom
                 y_reversed = len(self.__processed_map) - y_pos - 1
 
@@ -63,22 +63,20 @@ class Map:
 
                 # check if it is a wall
                 if self.__processed_map[y_pos][x_pos] == "X":
-                    tile = Tile((grid_x_pos, grid_y_pos), "wall")
-
-                # check if it is start/end point
+                    color = "grey"
+                # check if it is start point
                 elif self.__processed_map[y_pos][x_pos] == "s":
-                    tile = Tile((grid_x_pos, grid_y_pos), "start")
-
+                    color = "#61ff6e"
+                # check if it is end point
                 elif self.__processed_map[y_pos][x_pos] == "e":
-                    tile = Tile((grid_x_pos, grid_y_pos), "end")
-
+                    color = "#56defc"
                 # if not anything else, it is normal road
                 else:
-                    tile = Tile((grid_x_pos, grid_y_pos), "road")
+                    color = "white"
 
                 # configure the tile drawing
-                tile_drawing.fillcolor(tile.color)
-                tile_drawing.goto(tile.coordinates)
+                tile_drawing.fillcolor(color)
+                tile_drawing.goto((grid_x_pos, grid_y_pos))
 
                 # place down tile on the screen
                 tile_drawing.stamp()

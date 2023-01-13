@@ -3,6 +3,8 @@ from classes.utils import Utils
 from classes.map import Map
 from classes.pathfinder import Pathfinder
 from classes.mazegraph import MazeGraph
+from classes.drone import Drone
+from classes.dronecontroller import DroneController
 
 
 # class to control the logic of the program
@@ -34,8 +36,6 @@ class Application:
 
         # create map
         map_object = Map(map_text)
-        print(map_object.start_position)
-        print(map_object.end_position)
 
         # draw map
         map_object.draw()
@@ -48,14 +48,11 @@ class Application:
         solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 0)
         print(solution)
 
-        # spawn arrow at start point
-        arrow = turtle.Turtle()
-        arrow.hideturtle()
-        arrow.penup()
-        arrow.speed(0)
-        arrow.color('red')
-        arrow.goto(1*24, 1*24)
-        arrow.showturtle()
+        # spawn drone
+        drone = DroneController.spawnTurtleDrone(map_object.start_position)
+
+        # move drone to end using solution
+        DroneController.driveDrone(drone, solution)
 
 
         # this must be the last line in the turtle program

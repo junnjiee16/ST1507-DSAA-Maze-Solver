@@ -28,7 +28,8 @@ class Pathfinder:
     # solve the maze using preferred algorithm
     def solve_maze(self, graph, start_position, end_position, algorithm_choice):
         if algorithm_choice == 0:
-            return self.__LeftHandAlgorithm(graph, start_position, end_position)
+            self.__leftHandAlgoSolution = self.__LeftHandAlgorithm(graph, start_position, end_position)
+            return self.__leftHandAlgoSolution
 
 
     # helper functions for the left hand algorithm
@@ -62,8 +63,6 @@ class Pathfinder:
         current_orientation = direction[direction_index]
         
         while (x, y) != end_pos:
-            print(current_orientation)
-            print(x, y)
             ### call different functions based on orientation
             # check if can go left
             if current_orientation == "N":
