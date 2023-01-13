@@ -18,3 +18,7 @@ class FileManager:
 
                 print(content)        
                 return content
+
+        else:
+            print("Error: File does not exist")
+            return None
