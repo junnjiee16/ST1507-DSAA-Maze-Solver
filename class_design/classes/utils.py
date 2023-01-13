@@ -41,8 +41,8 @@ class Utils:
 
         return graph
 
-
-    def readFile(filename):
+    # reads the text file and returns the content as a string
+    def readMapFile(filename):
         # get the directory of the absolute path leading to the script it is running on (so it will be correct when another script imports this)
         path = os.path.dirname(os.path.abspath(sys.argv[0]))
         print(path)
@@ -54,10 +54,40 @@ class Utils:
         if os.path.exists(abs_file_path):
             with open(abs_file_path) as f:
                 content = f.read()
+            
+            content = content.splitlines() # split the content into lines
 
-                print(content)        
-                return content
+            # array of possible characters in the map
+            possible_chars = ['X', 's', 'e', '.']
+
+            # scan through the content and check if it is a valid character
+            # also checks if there is only one start and end point, and returns the coordinates of the start and end points
+            start_point = None
+            end_point = None
+            for y in range(len(content)):
+                for x in range(len(content[y])):
+                    if content[y][x] not in possible_chars:
+                        print("Error: Invalid character in map")
+                        return None, None, None
+
+                    elif content[y][x] == 's':
+                        if start_point != None:
+                            print("Error: Multiple start points in map")
+                            return None, None, None
+                        else:
+                            reversed_y = len(content) - 1 - y
+                            start_point = (x, reversed_y)
+
+                    elif content[y][x] == 'e':
+                        if end_point != None:
+                            print("Error: Multiple end points in map")
+                            return None, None, None
+                        else:
+                            reversed_y = len(content) - 1 - y
+                            end_point = (x, reversed_y)
+
+            return content, start_point, end_point
 
         else:
             print("Error: File does not exist")
-            return None
+            return None, None, None

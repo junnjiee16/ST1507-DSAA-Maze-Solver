@@ -1,6 +1,6 @@
-import turtle
-from classes.drone import Drone
+import networkx as nx
 from classes.doublyCircularLinkedList import DoublyCircularLinkedList
+
 
 # object to guide the arrow through the maze with algorithm of choice
 class Pathfinder:
@@ -32,22 +32,13 @@ class Pathfinder:
             self.__leftHandAlgoSolution = self.__LeftHandAlgorithm(graph, start_position, end_position)
             return self.__leftHandAlgoSolution
 
-
-    # helper functions for the left hand algorithm
-    def go_north(self, current_node):
-        return (current_node[0], current_node[1] + 1)
-
-    def go_east(self, current_node):
-        return (current_node[0] + 1, current_node[1])
-
-    def go_south(self, current_node):
-        return (current_node[0], current_node[1] - 1)
-
-    def go_west(self, current_node):
-        return (current_node[0] - 1, current_node[1])
+        elif algorithm_choice == 1:
+            self.__shortestPathSolution = self.__ShortestPathAlgorithm(graph, start_position, end_position)
+            return self.__shortestPathSolution
 
 
     def __LeftHandAlgorithm(self, graph, start_pos, end_pos):
+        print(start_pos)
         x, y = start_pos
 
         # array to store steps
@@ -64,7 +55,6 @@ class Pathfinder:
         current_orientation = compass.head
         
         while (x, y) != end_pos:
-            print(x, y)
             ### call different functions based on orientation
             # check if can go left
             if current_orientation.data == "N":
@@ -139,7 +129,7 @@ class Pathfinder:
                 next_node = self.go_east((x, y))
 
             x, y = next_node # update current position
-            current_orientation = current_orientation.next.next # turn compass to opposite
+            current_orientation = current_orientation.next.next # turn compass to opposite direction
             route_instructions.append("B") # append the side to turn the drone to
             route_instructions.append(next_node) # append the next coordinates to go to
 
@@ -147,4 +137,22 @@ class Pathfinder:
 
 
     def __ShortestPathAlgorithm(self, map_graph, start_position, end_position):
-        pass
+        if nx.has_path(map_graph, start_position, end_position):
+            return nx.shortest_path(map_graph, start_position, end_position)
+
+        else:
+            return None
+
+
+    # helper functions for the left hand algorithm
+    def go_north(self, current_node):
+        return (current_node[0], current_node[1] + 1)
+
+    def go_east(self, current_node):
+        return (current_node[0] + 1, current_node[1])
+
+    def go_south(self, current_node):
+        return (current_node[0], current_node[1] - 1)
+
+    def go_west(self, current_node):
+        return (current_node[0] - 1, current_node[1])

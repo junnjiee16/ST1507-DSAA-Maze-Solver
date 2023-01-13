@@ -11,3 +11,8 @@ should use the tab key for this
 columns (as shown in screenshot example)
 
 - OOP classes that you develop must be placed in separate python files
+
+
+
+TIME AND SPACE COMPLEXITY
+

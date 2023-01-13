@@ -23,7 +23,7 @@ class Application:
             return
 
         # open file
-        map_text = Utils.readFile(self.file_name)
+        map_text, start_coords, end_coords = Utils.readMapFile(self.file_name)
         if map_text == None:
             return
 
@@ -33,17 +33,17 @@ class Application:
         window.setup(window_size_x, window_size_y)
 
         # create map
-        map_object = Map(map_text)
+        map_object = Map(map_text, start_coords, end_coords)
 
         # draw map
         map_object.draw()
 
         # create graph
-        graph = Utils.map_to_graph(map_object.processed_map)
+        graph = Utils.map_to_graph(map_object.map_layout)
 
         # create pathfinder
         pathfinder = Pathfinder()
-        solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 0)
+        solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 0) # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
         print(solution)
 
         # spawn drone

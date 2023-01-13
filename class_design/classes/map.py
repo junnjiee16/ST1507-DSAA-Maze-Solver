@@ -3,32 +3,16 @@ import turtle
 
 # map object, stores necessary metadata for the map
 class Map:
-    def __init__(self, map_layout, start_position=None, end_position=None):
+    def __init__(self, map_layout, start_position, end_position):
         self.__map_layout = map_layout
         self.__start_position = start_position
         self.__end_position = end_position
 
-        # process map for drawing on turtle
-        self.__processed_map = self.__map_layout.split("\n") # split the map into a list of strings
-
-        if self.__start_position == None or self.__end_position == None:
-            while self.__start_position == None or self.__end_position == None:
-                for y in range(len(self.__processed_map)): # y axis of map, starting from top (according to map layout in text file)
-                    for x in range(len(self.__processed_map[y])):
-                        # reverse y to start from bottom
-                        y_reversed = len(self.__processed_map) - y - 1
-
-                        # check if it is start/end point
-                        if self.__processed_map[y][x] == "s":
-                            self.__start_position = (x, y_reversed)
-                        elif self.__processed_map[y][x] == "e":
-                            self.__end_position = (x, y_reversed)
-
 
     # getter functions
     @property
-    def processed_map(self):
-        return self.__processed_map
+    def map_layout(self):
+        return self.__map_layout
 
     @property
     def start_position(self):
@@ -51,24 +35,24 @@ class Map:
 
         ### draw the map by placing tiles according to map layout
         # also find the start and end coordinates of the map while drawing it
-        for y_pos in range(len(self.__processed_map)): # y axis of map, starting from top (according to map layout in text file)
-            for x_pos in range(len(self.__processed_map[y_pos])): # x axis of map starting from left
+        for y_pos in range(len(self.__map_layout)): # y axis of map, starting from top (according to map layout in text file)
+            for x_pos in range(len(self.__map_layout[y_pos])): # x axis of map starting from left
                 
                 # reverse y_pos to start from bottom
-                y_reversed = len(self.__processed_map) - y_pos - 1
+                y_reversed = len(self.__map_layout) - y_pos - 1
 
                 # calculate position of grid
                 grid_x_pos = 24 * x_pos
                 grid_y_pos = 24 * y_reversed
 
                 # check if it is a wall
-                if self.__processed_map[y_pos][x_pos] == "X":
+                if self.__map_layout[y_pos][x_pos] == "X":
                     color = "grey"
                 # check if it is start point
-                elif self.__processed_map[y_pos][x_pos] == "s":
+                elif self.__map_layout[y_pos][x_pos] == "s":
                     color = "#61ff6e"
                 # check if it is end point
-                elif self.__processed_map[y_pos][x_pos] == "e":
+                elif self.__map_layout[y_pos][x_pos] == "e":
                     color = "#56defc"
                 # if not anything else, it is normal road
                 else:
