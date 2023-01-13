@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-01-13T11:56:59.220Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76" etag="mMIpXFYPw2qmkeJrHrh9" version="20.8.4" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-01-13T17:42:01.522Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76" etag="VAiRfWTr4n0X6uohSpAa" version="20.8.5" type="github" pages="3">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Class Design">
-    <mxGraphModel dx="1542" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1002" dy="541" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -10,10 +10,10 @@
         <mxCell id="dQ57IdhiGYJqUYmVvskk-2" value="Purpose: Tile object to store tile metadata" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-0" vertex="1">
           <mxGeometry y="30" width="210" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-3" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;type&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;coordinates (?)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;color&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-0" vertex="1">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-3" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;type&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;coordinates (?)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;color&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-0" vertex="1">
           <mxGeometry y="90" width="210" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="4GmTz1bbVhYTWeWpqr6v-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-13">
+        <mxCell id="4GmTz1bbVhYTWeWpqr6v-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-5" target="dQ57IdhiGYJqUYmVvskk-13" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dQ57IdhiGYJqUYmVvskk-5" value="turtle library" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -28,7 +28,7 @@
         <mxCell id="dQ57IdhiGYJqUYmVvskk-11" value="__init__(self):&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;color&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;(and may have other stuff)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-8" vertex="1">
           <mxGeometry y="90" width="240" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="pP4sysXfX_SifiGV4ZdW-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-13" target="pP4sysXfX_SifiGV4ZdW-3">
+        <mxCell id="pP4sysXfX_SifiGV4ZdW-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-13" target="pP4sysXfX_SifiGV4ZdW-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dQ57IdhiGYJqUYmVvskk-13" value="Map" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -37,10 +37,10 @@
         <mxCell id="dQ57IdhiGYJqUYmVvskk-14" value="Purpose: to store map data and draw map" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-13" vertex="1">
           <mxGeometry y="30" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-21" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;map_layout&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;start position&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;end position&lt;br&gt;&lt;br&gt;def draw_map()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-13" vertex="1">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-21" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;map_layout&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;start position&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;end position&lt;br&gt;&lt;br&gt;def draw_map()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-13" vertex="1">
           <mxGeometry y="90" width="240" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="4GmTz1bbVhYTWeWpqr6v-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;shape=flexArrow;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-17" target="dQ57IdhiGYJqUYmVvskk-13">
+        <mxCell id="4GmTz1bbVhYTWeWpqr6v-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;shape=flexArrow;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dQ57IdhiGYJqUYmVvskk-17" target="dQ57IdhiGYJqUYmVvskk-13" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dQ57IdhiGYJqUYmVvskk-17" value="FileManager" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -55,7 +55,7 @@
         <mxCell id="dQ57IdhiGYJqUYmVvskk-33" value="Purpose: to use the chosen algorithm to solve the given maze as well as store solutions for the 2 different algorithms" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-32" vertex="1">
           <mxGeometry y="30" width="370" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="dQ57IdhiGYJqUYmVvskk-35" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;left hand algo solution&lt;br/&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;shortest path solution&lt;br/&gt;&lt;br/&gt;def solve_maze()&lt;br/&gt;&lt;br/&gt;def left hand algo()&lt;br/&gt;&lt;br/&gt;def shortest path algo()&lt;br/&gt;&lt;br/&gt;+ helper functions to traverse graph	&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-32" vertex="1">
+        <mxCell id="dQ57IdhiGYJqUYmVvskk-35" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;left hand algo solution&lt;br/&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;shortest path solution&lt;br/&gt;&lt;br/&gt;def solve_maze()&lt;br/&gt;&lt;br/&gt;def left hand algo()&lt;br/&gt;&lt;br/&gt;def shortest path algo()&lt;br/&gt;&lt;br/&gt;+ helper functions to traverse graph &lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="dQ57IdhiGYJqUYmVvskk-32" vertex="1">
           <mxGeometry y="100" width="370" height="220" as="geometry" />
         </mxCell>
         <mxCell id="7FqHwzOTrSw8YaoyhYBU-6" value="Application" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -64,7 +64,7 @@
         <mxCell id="7FqHwzOTrSw8YaoyhYBU-7" value="Purpose: to control the logic of the whole program as well as store program metadata" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="7FqHwzOTrSw8YaoyhYBU-6" vertex="1">
           <mxGeometry y="30" width="310" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="7FqHwzOTrSw8YaoyhYBU-9" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;author&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;app name&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;class" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="7FqHwzOTrSw8YaoyhYBU-6" vertex="1">
+        <mxCell id="7FqHwzOTrSw8YaoyhYBU-9" value="def __init__():&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;author&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;app name&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;class" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="7FqHwzOTrSw8YaoyhYBU-6" vertex="1">
           <mxGeometry y="120" width="310" height="110" as="geometry" />
         </mxCell>
         <mxCell id="QhIDpwn1hLKXuRbCtxrE-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QhIDpwn1hLKXuRbCtxrE-2" target="dQ57IdhiGYJqUYmVvskk-17" edge="1">
@@ -78,41 +78,41 @@
         <mxCell id="QhIDpwn1hLKXuRbCtxrE-2" value="os library&lt;br&gt;sys library" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="130" y="620" width="100" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="pP4sysXfX_SifiGV4ZdW-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4GmTz1bbVhYTWeWpqr6v-0" target="dQ57IdhiGYJqUYmVvskk-32">
+        <mxCell id="pP4sysXfX_SifiGV4ZdW-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4GmTz1bbVhYTWeWpqr6v-0" target="dQ57IdhiGYJqUYmVvskk-32" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="4GmTz1bbVhYTWeWpqr6v-0" value="MazeGraph (inherit nx.Graph)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="4GmTz1bbVhYTWeWpqr6v-0" value="MazeGraph (inherit nx.Graph)" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="1200" y="90" width="240" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="4GmTz1bbVhYTWeWpqr6v-1" value="Purpose: to create and store the map in graph format" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="4GmTz1bbVhYTWeWpqr6v-0">
+        <mxCell id="4GmTz1bbVhYTWeWpqr6v-1" value="Purpose: to create and store the map in graph format" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="4GmTz1bbVhYTWeWpqr6v-0" vertex="1">
           <mxGeometry y="30" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="4GmTz1bbVhYTWeWpqr6v-3" value="override necessary Graph class methods" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="4GmTz1bbVhYTWeWpqr6v-0">
+        <mxCell id="4GmTz1bbVhYTWeWpqr6v-3" value="override necessary Graph class methods" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="4GmTz1bbVhYTWeWpqr6v-0" vertex="1">
           <mxGeometry y="90" width="240" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="4GmTz1bbVhYTWeWpqr6v-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4GmTz1bbVhYTWeWpqr6v-7" target="4GmTz1bbVhYTWeWpqr6v-0">
+        <mxCell id="4GmTz1bbVhYTWeWpqr6v-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4GmTz1bbVhYTWeWpqr6v-7" target="4GmTz1bbVhYTWeWpqr6v-0" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="4GmTz1bbVhYTWeWpqr6v-7" value="networkx library" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="4GmTz1bbVhYTWeWpqr6v-7" value="networkx library" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="1500" y="155" width="110" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="pP4sysXfX_SifiGV4ZdW-3" value="Utils" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="pP4sysXfX_SifiGV4ZdW-3" value="Utils" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="740" y="130" width="290" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="pP4sysXfX_SifiGV4ZdW-4" value="Purpose: to store general helper functions for the application usage" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="pP4sysXfX_SifiGV4ZdW-3">
+        <mxCell id="pP4sysXfX_SifiGV4ZdW-4" value="Purpose: to store general helper functions for the application usage" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="pP4sysXfX_SifiGV4ZdW-3" vertex="1">
           <mxGeometry y="30" width="290" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="pP4sysXfX_SifiGV4ZdW-6" value="def map_to_graph()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="pP4sysXfX_SifiGV4ZdW-3">
+        <mxCell id="pP4sysXfX_SifiGV4ZdW-6" value="def map_to_graph()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="pP4sysXfX_SifiGV4ZdW-3" vertex="1">
           <mxGeometry y="130" width="290" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="pP4sysXfX_SifiGV4ZdW-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.004;entryY=0.104;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="pP4sysXfX_SifiGV4ZdW-4" target="4GmTz1bbVhYTWeWpqr6v-0">
+        <mxCell id="pP4sysXfX_SifiGV4ZdW-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.004;entryY=0.104;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="pP4sysXfX_SifiGV4ZdW-4" target="4GmTz1bbVhYTWeWpqr6v-0" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="itJlK-fQ4tGxTsf1Goz-" name="Logic Flow">
-    <mxGraphModel dx="954" dy="515" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1002" dy="541" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -152,31 +152,46 @@
         <mxCell id="jX-C0cm8iFk9HgW910qJ-12" value="pathfinder re-solves the maze everytime user changes algorithm" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="356.25" y="200" width="212.5" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="DP6GhfA0DUzpBAB0SIkU-1" value="Go North = (x, y+1)&lt;br&gt;Go East = (x + 1, y)&lt;br&gt;Go South= (x, y -1)&lt;br&gt;Go West = (x -1, y)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="DP6GhfA0DUzpBAB0SIkU-1" value="Go North = (x, y+1)&lt;br&gt;Go East = (x + 1, y)&lt;br&gt;Go South= (x, y -1)&lt;br&gt;Go West = (x -1, y)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="180" y="505" width="240" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="DP6GhfA0DUzpBAB0SIkU-2" value="orientations:&lt;br&gt;North = 90&lt;br&gt;East = 0&lt;br&gt;South = 270&lt;br&gt;West = 180" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="DP6GhfA0DUzpBAB0SIkU-2" value="orientations:&lt;br&gt;North = 90&lt;br&gt;East = 0&lt;br&gt;South = 270&lt;br&gt;West = 180" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="190" y="630" width="230" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="yYzYYFvfRe-9Cc6EB2oy" name="Class Summary">
-    <mxGraphModel dx="871" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1113" dy="601" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="FwXcW5j7sJduI13eyS_5-1" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Map: Stores map metadata, can draw map&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="440" height="80" as="geometry" />
+        <mxCell id="FwXcW5j7sJduI13eyS_5-1" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Map: Stores map metadata, can draw map&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="480" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="FwXcW5j7sJduI13eyS_5-2" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Pathfinder: Helps user to find a route (depending on algorithm)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="120" width="440" height="80" as="geometry" />
+        <mxCell id="FwXcW5j7sJduI13eyS_5-2" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Pathfinder: Finds a route using a path finding algorithm of choice given start and end points of a maze.&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="280" width="480" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="FwXcW5j7sJduI13eyS_5-3" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Maze Graph: A graph structure representing the given maze&lt;br&gt;(Inheritance: Maze Graph is a nx.Graph)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="200" width="440" height="80" as="geometry" />
+        <mxCell id="FwXcW5j7sJduI13eyS_5-3" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Maze Graph: A graph structure representing the given maze&lt;br&gt;(Inheritance: Maze Graph is a nx.Graph)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="200" width="480" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="FwXcW5j7sJduI13eyS_5-4" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Drone: Stores drone metadata&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="280" width="440" height="80" as="geometry" />
+        <mxCell id="FwXcW5j7sJduI13eyS_5-4" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Drone Controller: Places the drone (a turtle object) on the drawn map which is a turtle Screen and drives the drone&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="440" width="480" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4ZjNF9KWUZXb0ORi-lbe-1" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Doubly Circular Linked List: Linked list that can access nodes on both sides, and head connects to tail. Used for implementing a compass like structure&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="480" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4ZjNF9KWUZXb0ORi-lbe-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=14;dashed=1;" edge="1" parent="1" source="4ZjNF9KWUZXb0ORi-lbe-2" target="4ZjNF9KWUZXb0ORi-lbe-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4ZjNF9KWUZXb0ORi-lbe-2" value="Node: helper class to implement nodes of a linked list" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="600" y="360" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4ZjNF9KWUZXb0ORi-lbe-4" value="Utils: To store necessary helper functions for the program" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="480" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4ZjNF9KWUZXb0ORi-lbe-5" value="Application: Controls the logic of the program as well as store program metadata" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="480" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
