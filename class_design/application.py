@@ -43,7 +43,7 @@ class Application:
 
         # create pathfinder
         pathfinder = Pathfinder()
-        solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 0) # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
+        solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 1) # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
         print(solution)
 
         # spawn drone

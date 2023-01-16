@@ -2,13 +2,13 @@ import turtle
 
 # drives the drone
 class DroneController:
-    def spawnTurtleDrone(orientation):
+    def spawnTurtleDrone(starting_pos):
         drone = turtle.Turtle()
         drone.hideturtle()
         drone.color('red')
         drone.penup()
         drone.speed(1)
-        drone.goto(orientation[0] * 24, orientation[1] * 24)
+        drone.goto(starting_pos[0] * 24, starting_pos[1] * 24)
         drone.showturtle()
         return drone
 

@@ -16,3 +16,26 @@ columns (as shown in screenshot example)
 
 TIME AND SPACE COMPLEXITY
 
+Utils.readMapFile():
+- this function returns a 1D array of map file, start and end points
+
+- The map text file is read into a string, then the string is split into a list of strings at linebreak, each element is a line of the map.
+- splitlines() is O(1) as it is 1 line of string
+- After reading the map file into an array, the array is iterated through to see if the map file is corrupted, as well as scan for the 
+start and end points. The time complexity of this is O(mn), where m is the number of rows and n is the number of columns. This is because
+we need to iterate through each character to validate it as a valid character
+
+
+Utils.map_to_graph():
+- this function returns a graph structure of the map with map layout as the input
+- 
+
+
+Map class:
+- To initialize the map class, the map layout (in 1D array), start and endpoints of map is required.
+- There are getter and setter functions for all 3 class variables
+
+- The time complexity for the draw_map() function is O(mn), where m is the number of rows and n is the number of columns. This is because
+we need to iterate through each character to draw it on the map.
+
+
