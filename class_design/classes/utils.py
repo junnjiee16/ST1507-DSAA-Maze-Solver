@@ -2,6 +2,7 @@ import os
 import sys
 from classes.mazegraph import MazeGraph
 
+# class to store general functions to support the application
 class Utils:
     # takes in the processed map text and converts it to a graph
     def map_to_graph(processed_map):

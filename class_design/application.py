@@ -2,6 +2,7 @@ import turtle
 from classes.utils import Utils
 from classes.map import Map
 from classes.pathfinder import Pathfinder
+from classes.drone import Drone
 from classes.dronecontroller import DroneController
 
 
@@ -12,46 +13,52 @@ class Application:
         self.program_name = program_name
         self.authors = authors
         self.class_name = class_name
-        self.file_name = None
-    
-    def useFile(self, file_name):
-        self.file_name = file_name
+        self.title = f"{self.program_name}: Done by {self.authors}, {self.class_name}"
 
-    def startProgram(self, window_size_x, window_size_y):
-        if self.file_name == None:
+    def startProgram(self, file_name=None):
+        if file_name == None:
             print("Error: No file selected")
             return
 
         # open file
-        map_text, start_coords, end_coords = Utils.readMapFile(self.file_name)
+        print("Reading and scanning map file")
+        map_text, start_coords, end_coords = Utils.readMapFile(file_name)
         if map_text == None:
             return
 
         # create the turtle screen
         window = turtle.Screen()
-        window.title(f"{self.program_name}: Done by {self.authors}, {self.class_name}") # create the titlebar
-        window.setup(window_size_x, window_size_y)
+        window.title(self.title) # create the titlebar
+        # window.setup(width=1.0, height=1.0)
 
-        # create map
+        # instantiate map
         map_object = Map(map_text, start_coords, end_coords)
 
-        # draw map
-        map_object.draw()
-
-        # create graph
+        # create graph from map layout
+        print("Generating graph from map")
         graph = Utils.map_to_graph(map_object.map_layout)
 
-        # create pathfinder
+        # instantiate pathfinder object
+        print("Instantiating pathfinder object")
         pathfinder = Pathfinder()
-        solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 1) # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
+
+        # draw map on screen
+        print("Drawing map")
+        map_object.draw() # this uses turtle's Turtle object to place down tiles on the map
+
+        # solve maze
+        print("Solving the maze")
+        solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 0) # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
         print(solution)
 
-        # spawn drone
-        drone = DroneController.spawnTurtleDrone(map_object.start_position)
-
-        # move drone to end using solution
-        DroneController.driveDrone(drone, solution)
-
+        # show the solution
+        print("Animating solution")
+        # instantiate Drone object
+        # drone = Drone()
+        # drone_control = DroneController(drone, solution)
+        # drone_control.placeDrone(map_object.start_position)
+        drone = turtle.Turtle()
+        drone.goto((2, 1))
 
         # this must be the last line in the turtle program
         window.mainloop()

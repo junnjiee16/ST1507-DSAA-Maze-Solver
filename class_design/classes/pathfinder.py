@@ -1,6 +1,4 @@
 import networkx as nx
-from classes.doublyCircularLinkedList import DoublyCircularLinkedList
-
 
 # object to guide the arrow through the maze with algorithm of choice
 class Pathfinder:
@@ -29,109 +27,78 @@ class Pathfinder:
     # solve the maze using preferred algorithm
     def solve_maze(self, graph, start_position, end_position, algorithm_choice):
         if algorithm_choice == 0:
-            self.__leftHandAlgoSolution = self.__LeftHandAlgorithm(graph, start_position, end_position)
+            if self.__leftHandAlgoSolution == None:
+                self.__leftHandAlgoSolution = self.__LeftHandAlgorithm(graph, start_position, end_position)
             return self.__leftHandAlgoSolution
 
         elif algorithm_choice == 1:
-            self.__shortestPathSolution = self.__ShortestPathAlgorithm(graph, start_position, end_position)
+            if self.__shortestPathSolution == None:
+                self.__shortestPathSolution = self.__ShortestPathAlgorithm(graph, start_position, end_position)
             return self.__shortestPathSolution
 
 
     def __LeftHandAlgorithm(self, graph, start_pos, end_pos):
-        print(start_pos)
         x, y = start_pos
 
         # array to store steps
         route_instructions = []
 
+        # tuples are in order of left, forward, right, back according to current orientation
+        facingNorth = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        facingEast = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        facingSouth = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+        facingWest = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+
         # keep track of orientation when moving through maze
-        compass = DoublyCircularLinkedList()
-        compass.add("E") # east
-        compass.add("S") # south
-        compass.add("W") # west
-        compass.add("N") # north
+        # compass = ["N", "E", "S", "W"]
+        compass = [facingNorth, facingEast, facingSouth, facingWest]
 
-        # set starting orientation to east, this is default orientation the pen will face in turtle when it first starts
-        current_orientation = compass.head
+        # keep track of how to turn the compass and the direction
+        # ordered by left, forward, right, back
+        turn = [-1, 0, 1, 2]
+        turn_angle = [-90, 0, 90, 180]
+
+        # set starting orientation to east (index of 1), this is default orientation the pen will face in turtle when it first starts
+        # keep track of index in compass array, so that we can get index in O(1) time instead of using .index() which is O(n)
+        # when changing index, always mod by 4 to keep it within range
+        index = 1
         
+        # keep finding the next node to go to until we reach the end
         while (x, y) != end_pos:
-            ### call different functions based on orientation
-            # check if can go left
-            if current_orientation.data == "N":
-                next_node = self.go_west((x, y))
+            # get current orientation
+            current_orientation = compass[index]
 
-            elif current_orientation.data == "E":
-                next_node = self.go_north((x, y))
+            # find all neighbors of current node, convert to list as function returns a iterator
+            neighbors = list(graph.neighbors((x, y)))
 
-            elif current_orientation.data == "S":
-                next_node = self.go_east((x, y))
+            # if neighbors is 4, means all 4 directions are available, always turn left
+            if len(neighbors) == 4:
+                # update current position and add to route instructions
+                x, y = x + current_orientation[0][0], y + current_orientation[0][1]
+                route_instructions.append(turn_angle[0]) # turn left first
+                route_instructions.append((x, y))
 
-            elif current_orientation.data == "W":
-                next_node = self.go_south((x, y))
+                # update the new orientation, turn left means index 0
+                index = (index + turn[0]) % 4
 
-            if next_node in graph:
-                x, y = next_node # update current position
-                current_orientation = current_orientation.prev # turn compass to left
-                route_instructions.append("L") # append the side to turn the drone to
-                route_instructions.append(next_node) # append the next coordinates to go to
-                continue
+            # else if 1, 2 or 3 neighbours, we need to check every direction, starting from left > forward > right > back
+            else:
+                # direction is in order of left, forward, right, back
+                for direction in range(len(current_orientation)):
+                    # check if the next node in the direction exists
+                    x_next, y_next = x + current_orientation[direction][0], y + current_orientation[direction][1]
 
-            # check if can go forward   
-            if current_orientation.data == "N":
-                next_node = self.go_north((x, y))
+                    if graph.has_node((x_next, y_next)):
+                        # update position and add to route instructions
+                        x, y = x_next, y_next
+                        route_instructions.append(turn_angle[direction]) # keep track of turn angle
+                        route_instructions.append((x, y))
 
-            elif current_orientation.data == "E":
-                next_node = self.go_east((x, y))
+                        # update the new orientation
+                        index = (index + turn[direction]) % 4
 
-            elif current_orientation.data == "S":
-                next_node = self.go_south((x, y))
-
-            elif current_orientation.data == "W":
-                next_node = self.go_west((x, y))
-
-            if next_node in graph:
-                x, y = next_node # update current position
-                # no need to change orientation as drone is going straight
-                route_instructions.append(next_node) # append the next coordinates to go to
-                continue
-
-            # check if can go right
-            if current_orientation.data == "N":
-                next_node = self.go_east((x, y))
-            
-            elif current_orientation.data == "E":
-                next_node = self.go_south((x, y))
-
-            elif current_orientation.data == "S":
-                next_node = self.go_west((x, y))
-
-            elif current_orientation.data == "W":
-                next_node = self.go_north((x, y))
-
-            if next_node in graph:
-                x, y = next_node # update current position
-                current_orientation = current_orientation.next # turn compass to right
-                route_instructions.append("R") # append the side to turn the drone to
-                route_instructions.append(next_node)
-                continue
-
-            # if all fails, go opposite direction
-            if current_orientation.data == "N":
-                next_node = self.go_south((x, y))
-
-            elif current_orientation.data == "E":
-                next_node = self.go_west((x, y))
-            
-            elif current_orientation.data == "S":
-                next_node = self.go_north((x, y))
-
-            elif current_orientation.data == "W":
-                next_node = self.go_east((x, y))
-
-            x, y = next_node # update current position
-            current_orientation = current_orientation.next.next # turn compass to opposite direction
-            route_instructions.append("B") # append the side to turn the drone to
-            route_instructions.append(next_node) # append the next coordinates to go to
+                        # break out of loop as we found the next node
+                        break
 
         return route_instructions
 
@@ -142,17 +109,3 @@ class Pathfinder:
 
         else:
             return None
-
-
-    # helper functions for the left hand algorithm
-    def go_north(self, current_node):
-        return (current_node[0], current_node[1] + 1)
-
-    def go_east(self, current_node):
-        return (current_node[0] + 1, current_node[1])
-
-    def go_south(self, current_node):
-        return (current_node[0], current_node[1] - 1)
-
-    def go_west(self, current_node):
-        return (current_node[0] - 1, current_node[1])

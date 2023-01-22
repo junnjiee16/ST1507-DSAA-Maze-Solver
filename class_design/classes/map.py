@@ -34,7 +34,6 @@ class Map:
         tile_drawing.pencolor('black')
 
         ### draw the map by placing tiles according to map layout
-        # also find the start and end coordinates of the map while drawing it
         for y_pos in range(len(self.__map_layout)): # y axis of map, starting from top (according to map layout in text file)
             for x_pos in range(len(self.__map_layout[y_pos])): # x axis of map starting from left
                 
