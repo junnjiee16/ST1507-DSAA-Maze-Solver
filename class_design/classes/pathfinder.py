@@ -2,9 +2,14 @@ import networkx as nx
 
 # object to guide the arrow through the maze with algorithm of choice
 class Pathfinder:
-    def __init__(self):
+    def __init__(self, graph, start_position, end_position):
+        self.__graph = graph
+        self.__start_position = start_position
+        self.__end_position = end_position
+
         self.__leftHandAlgoSolution = None
         self.__shortestPathSolution = None
+        self.__useAlgo = 0 # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
 
     # getters and setter functions
     @property
@@ -23,22 +28,39 @@ class Pathfinder:
     def shortestPathSolution(self, value):
         self.__shortestPathSolution = value
 
+    # getter to get name of algorithm, setter to switch between algorithms
+    def algo_name(self):
+        if self.__useAlgo == 0:
+            return "Left Hand Algorithm"
+        elif self.__useAlgo == 1:
+            return "Shortest Path Algorithm"
+
+    def change_algo(self):
+        if self.__useAlgo == 0:
+            print("Changing to shortest path")
+            self.__useAlgo = 1
+        else:
+            print("Changing to left hand")
+            self.__useAlgo = 0
+
 
     # solve the maze using preferred algorithm
-    def solve_maze(self, graph, start_position, end_position, algorithm_choice):
-        if algorithm_choice == 0:
+    def maze_solution(self):
+        if self.__useAlgo == 0:
             if self.__leftHandAlgoSolution == None:
-                self.__leftHandAlgoSolution = self.__LeftHandAlgorithm(graph, start_position, end_position)
+                print("First time solving left hand")
+                self.__leftHandAlgoSolution = self.__LeftHandAlgorithm()
             return self.__leftHandAlgoSolution
 
-        elif algorithm_choice == 1:
+        elif self.__useAlgo == 1:
             if self.__shortestPathSolution == None:
-                self.__shortestPathSolution = self.__ShortestPathAlgorithm(graph, start_position, end_position)
+                print("First time solving shortest path")
+                self.__shortestPathSolution = self.__ShortestPathAlgorithm()
             return self.__shortestPathSolution
 
 
-    def __LeftHandAlgorithm(self, graph, start_pos, end_pos):
-        x, y = start_pos
+    def __LeftHandAlgorithm(self):
+        x, y = self.__start_position
 
         # array to store steps
         route_instructions = []
@@ -64,12 +86,12 @@ class Pathfinder:
         index = 1
         
         # keep finding the next node to go to until we reach the end
-        while (x, y) != end_pos:
+        while (x, y) != self.__end_position:
             # get current orientation
             current_orientation = compass[index]
 
             # find all neighbors of current node, convert to list as function returns a iterator
-            neighbors = list(graph.neighbors((x, y)))
+            neighbors = list(self.__graph.neighbors((x, y)))
 
             # if neighbors is 4, means all 4 directions are available, always turn left
             if len(neighbors) == 4:
@@ -88,7 +110,7 @@ class Pathfinder:
                     # check if the next node in the direction exists
                     x_next, y_next = x + current_orientation[direction][0], y + current_orientation[direction][1]
 
-                    if graph.has_node((x_next, y_next)):
+                    if self.__graph.has_node((x_next, y_next)):
                         # update position and add to route instructions
                         x, y = x_next, y_next
                         route_instructions.append(turn_angle[direction]) # keep track of turn angle
@@ -103,9 +125,9 @@ class Pathfinder:
         return route_instructions
 
 
-    def __ShortestPathAlgorithm(self, map_graph, start_position, end_position):
-        if nx.has_path(map_graph, start_position, end_position):
-            return nx.shortest_path(map_graph, start_position, end_position)
+    def __ShortestPathAlgorithm(self):
+        if nx.has_path(self.__graph, self.__start_position, self.__end_position):
+            return nx.shortest_path(self.__graph, self.__start_position, self.__end_position)
 
         else:
             return None

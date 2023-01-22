@@ -3,7 +3,7 @@ from classes.utils import Utils
 from classes.map import Map
 from classes.pathfinder import Pathfinder
 from classes.drone import Drone
-from classes.dronecontroller import DroneController
+from classes.mapscreen import MapScreen
 
 
 # class to control the logic of the program
@@ -27,38 +27,52 @@ class Application:
             return
 
         # create the turtle screen
-        window = turtle.Screen()
-        window.title(self.title) # create the titlebar
-        # window.setup(width=1.0, height=1.0)
+        window = MapScreen(self.title)
 
         # instantiate map
-        map_object = Map(map_text, start_coords, end_coords)
+        map = Map(map_text, start_coords, end_coords)
 
         # create graph from map layout
         print("Generating graph from map")
-        graph = Utils.map_to_graph(map_object.map_layout)
+        graph = Utils.map_to_graph(map.layout)
 
         # instantiate pathfinder object
         print("Instantiating pathfinder object")
-        pathfinder = Pathfinder()
+        pathfinder = Pathfinder(graph, map.start_position, map.end_position)
 
         # draw map on screen
         print("Drawing map")
-        map_object.draw() # this uses turtle's Turtle object to place down tiles on the map
+        map.draw() # this uses turtle's Turtle object to place down tiles on the map
 
         # solve maze
-        print("Solving the maze")
-        solution = pathfinder.solve_maze(graph, map_object.start_position, map_object.end_position, 0) # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
+        solution = pathfinder.maze_solution() # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
         print(solution)
 
         # show the solution
-        print("Animating solution")
         # instantiate Drone object
-        # drone = Drone()
-        # drone_control = DroneController(drone, solution)
-        # drone_control.placeDrone(map_object.start_position)
-        drone = turtle.Turtle()
-        drone.goto((2, 1))
+        drone = Drone(solution, map.start_position)
+
+        # update title bar after everything is initialized
+        window.update_title(f"{self.title}, {pathfinder.algo_name()} - Steps: {drone.steps_taken}")
+
+        # set key event handlers
+        # command drone to execute next step in solution and update title bar
+        window.set_key(
+            lambda: 
+                drone.move() or 
+                window.update_title(f"{self.title}, {pathfinder.algo_name()} - Steps: {drone.steps_taken}"), 
+            "m"
+        )
+
+        # TAB key: reset drone, change algorithm, update solution, update title bar
+        window.set_key(
+            lambda: 
+                drone.reset() or 
+                pathfinder.change_algo() or 
+                drone.set_instructions(pathfinder.maze_solution()) or
+                window.update_title(f"{self.title}, {pathfinder.algo_name()} - Steps: {drone.steps_taken}"), 
+            "Tab"
+        )
 
         # this must be the last line in the turtle program
         window.mainloop()
