@@ -122,12 +122,47 @@ class Pathfinder:
                         # break out of loop as we found the next node
                         break
 
+        print(route_instructions)
         return route_instructions
 
 
     def __ShortestPathAlgorithm(self):
         if nx.has_path(self.__graph, self.__start_position, self.__end_position):
-            return nx.shortest_path(self.__graph, self.__start_position, self.__end_position)
+            path = nx.shortest_path(self.__graph, self.__start_position, self.__end_position)
+
+            # convert path to route instructions
+            route_instructions = []
+            
+            facingNorth = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+            facingEast = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+            facingSouth = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+            facingWest = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+
+            turn_angle = [-90, 0, 90, 180]
+            turn = [-1, 0, 1, 2]
+
+            compass = [facingNorth, facingEast, facingSouth, facingWest]
+
+            index = 1 # default orientation is east
+
+            for i in range(len(path) - 1): # -1 as we don't need to check the last node
+                current_direction = compass[index] # default orientation is east for turtle
+
+                # get the x and y difference between 2 nodes
+                x_diff = path[i + 1][0] - path[i][0]
+                y_diff = path[i + 1][1] - path[i][1]
+
+                # find new orientation
+                next_direction_index = current_direction.index((x_diff, y_diff)) # Worst case O(4)
+
+                if next_direction_index != 1: # if not forward, get turn angle
+                    route_instructions.append(turn_angle[next_direction_index])
+                    index = (index + turn[next_direction_index]) % 4
+
+                route_instructions.append(path[i + 1])
+
+            print(route_instructions)
+            return route_instructions                
 
         else:
             return None

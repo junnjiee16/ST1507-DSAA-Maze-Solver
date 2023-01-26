@@ -1,9 +1,8 @@
-import turtle
 from classes.utils import Utils
 from classes.map import Map
 from classes.pathfinder import Pathfinder
 from classes.drone import Drone
-from classes.mapscreen import MapScreen
+from classes.screen import Screen
 
 
 # class to control the logic of the program
@@ -27,7 +26,7 @@ class Application:
             return
 
         # create the turtle screen
-        window = MapScreen(self.title)
+        window = Screen(self.title)
 
         # instantiate map
         map = Map(map_text, start_coords, end_coords)
@@ -46,7 +45,6 @@ class Application:
 
         # solve maze
         solution = pathfinder.maze_solution() # 0 = Left Hand Algorithm, 1 = Shortest Path Algorithm
-        print(solution)
 
         # show the solution
         # instantiate Drone object

@@ -1,6 +1,6 @@
 import os
 import sys
-from classes.mazegraph import MazeGraph
+import networkx as nx
 
 # class to store general functions to support the application
 class Utils:
@@ -8,7 +8,7 @@ class Utils:
     def map_to_graph(processed_map):
 
         # Create an empty graph
-        graph = MazeGraph()
+        graph = nx.Graph()
 
         # Add the nodes to the graph
         # nodes are the coordinates of each road tile in the map
@@ -18,7 +18,7 @@ class Utils:
                     
                     # reverse y axis order before adding node
                     y_reverse = len(processed_map) - 1 - y
-                    graph.addNode((x, y_reverse))
+                    graph.add_node((x, y_reverse))
 
         # Add the edges (connections) to the graph
         for node in graph.nodes:
@@ -26,19 +26,19 @@ class Utils:
 
             # Check the top cell (y + 1)
             if (x, y + 1) in graph.nodes:
-                graph.addEdge(node, (x, y + 1))
+                graph.add_edge(node, (x, y + 1))
 
             # Check the bottom cell (y - 1)
             if (x, y - 1) in graph.nodes:
-                graph.addEdge(node, (x, y - 1))
+                graph.add_edge(node, (x, y - 1))
 
             # Check the left cell (x - 1)
             if (x - 1, y) in graph.nodes:
-                graph.addEdge(node, (x - 1, y))
+                graph.add_edge(node, (x - 1, y))
 
             # Check the right cell (x + 1)
             if (x + 1, y) in graph.nodes:
-                graph.addEdge(node, (x + 1, y))
+                graph.add_edge(node, (x + 1, y))
 
         return graph
 

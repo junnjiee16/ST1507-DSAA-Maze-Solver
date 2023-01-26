@@ -2,8 +2,9 @@ import turtle
 
 # Drone object to keep track of steps taken and execute instructions (the maze solution)
 class Drone:
-    def __init__(self, instructions, start_position):
+    def __init__(self, instructions, start_position, current_position=None):
         self.__start_position = start_position
+        self.__curr_position = current_position
         self.__instructions = instructions
 
         self.__steps_taken = 0 # track the number of steps taken by the drone: only +1 when it moves. +0 when it turns
