@@ -31,28 +31,55 @@ class Application:
         self.class_name = class_name
         self.title = f"{self.program_name}: Done by {self.authors}, {self.class_name}"
 
-    def startProgram(self, file_name=None):
-        if file_name == None:
-            print("Error: No file selected")
-            return
+    def startProgram(self, file_name):
 
-        # scan and open file
+        ### -------------------------------------------------------
+        ### READ AND SCAN MAP FILE
+        ### -------------------------------------------------------
         print("Reading and scanning map file")
         map_text, start_pos, end_pos = Utils.readMapFile(file_name)
         if map_text == None:
             return
 
-        # instantiate objects
+
+
+        ### -------------------------------------------------------
+        ### RUN ALL PROGRAM LOGIC FIRST BEFORE RENDERING ANYTHING
+        ### -------------------------------------------------------
+        # instantiate map and drone objects
         map = Map(map_text, start_pos, end_pos)
         drone = Drone(current_pos=map.start_pos)
-        
+
         # get graph from map
         map_graph = Utils.map_to_graph(map.layout, map.start_pos, map.end_pos)
 
+        # instantiate pathfinder object and solve the graph, default is left hand algorithm
+        lefthand_pathfinder = LeftHandPathfinder()
+        lefthand_pathfinder.solve(map_graph)
+        solution = lefthand_pathfinder.solution
+
+
+
+        ### -------------------------------------------------------
+        ### RENDERING GRAPHICS
+        ### -------------------------------------------------------
         # create turtle screen
         window = turtle.Screen()
 
+        # use Renderer to render map and spawn the drone
+        Renderer.render_map(map.layout)
+        drone_sprite = Renderer.spawn_drone(drone.current_pos, drone.orientation)
 
+
+
+        ### -------------------------------------------------------
+        ### CATCH KEY PRESS EVENTS
+        ### -------------------------------------------------------
+        
+
+
+        # this must be the last line in the turtle program
+        window.mainloop()
 
         # # create the turtle screen
         # window = Screen(self.title)
