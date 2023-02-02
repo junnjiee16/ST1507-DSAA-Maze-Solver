@@ -2,7 +2,7 @@ from classes.utils import Utils
 from classes.map import Map
 from classes.pathfinder import Pathfinder
 from classes.drone import Drone
-from classes.screen import Screen
+from archived_classes.screen import Screen
 
 
 # class to control the logic of the program
