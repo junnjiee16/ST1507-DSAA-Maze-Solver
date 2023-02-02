@@ -1,23 +1,23 @@
 import os
 import sys
-import networkx as nx
+from classes.mapgraph import MapGraph
 
 # class to store general functions to support the application
 class Utils:
     # takes in the processed map text and converts it to a graph
-    def map_to_graph(processed_map):
+    def map_to_graph(map):
 
         # Create an empty graph
-        graph = nx.Graph()
+        graph = MapGraph(map.start_pos, map.end_pos)
 
         # Add the nodes to the graph
         # nodes are the coordinates of each road tile in the map
-        for y in range(len(processed_map)): # go from bottom up
-            for x in range(len(processed_map[0])):
-                if processed_map[y][x] != 'X': #1 is used to represent walls
+        for y in range(len(map.layout)): # go from bottom up
+            for x in range(len(map.layout[0])):
+                if map.layout[y][x] != 'X': #1 is used to represent walls
                     
                     # reverse y axis order before adding node
-                    y_reverse = len(processed_map) - 1 - y
+                    y_reverse = len(map.layout) - 1 - y
                     graph.add_node((x, y_reverse))
 
         # Add the edges (connections) to the graph

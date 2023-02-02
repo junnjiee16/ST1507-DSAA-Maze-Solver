@@ -6,7 +6,7 @@ class Drone:
         self.__current_pos = current_pos
         self.__orientation = 0
         self.__steps_taken = 0 # track the number of steps taken by the drone: only +1 when it moves. +0 when it turns
-    
+
     @property
     def current_pos(self):
         return self.__current_pos
@@ -18,7 +18,6 @@ class Drone:
     @property
     def steps_taken(self):
         return self.__steps_taken
-
 
     @current_pos.setter
     def current_pos(self, value):

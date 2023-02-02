@@ -1,16 +1,10 @@
-# from classes.utils import Utils
-# from classes.map import Map
-# from classes.pathfinder import Pathfinder
-# from classes.drone import Drone
-# from archived_classes.screen import Screen
-
 import turtle
 
 # program logic imports
 from classes.utils import Utils
 from classes.map import Map
 from classes.drone import Drone
-from classes.mapgraph import MapGraph
+from classes.dronecontroller import DroneController
 
 # pathfinder imports
 from classes.lefthandpathfinder import LeftHandPathfinder
@@ -18,8 +12,6 @@ from classes.shortestpathfinder import ShortestPathfinder
 
 # media imports
 from classes.renderer import Renderer
-from classes.dronesprite import DroneSprite
-from classes.blocksprite import BlockSprite
 
 
 # class to control the logic of the program
@@ -48,37 +40,47 @@ class Application:
         ### -------------------------------------------------------
         # instantiate map and drone objects
         map = Map(map_text, start_pos, end_pos)
-        drone = Drone(current_pos=map.start_pos)
+        drone = Drone(map.start_pos)
+        drone_controller = DroneController(drone)
 
         # get graph from map
-        map_graph = Utils.map_to_graph(map.layout, map.start_pos, map.end_pos)
+        map_graph = Utils.map_to_graph(map)
 
-        # instantiate pathfinder object and solve the graph, default is left hand algorithm
+        # instantiate lefthand and shortest pathfinder objects
         lefthand_pathfinder = LeftHandPathfinder()
-        lefthand_pathfinder.solve(map_graph)
-        solution = lefthand_pathfinder.solution
-
+        shortest_pathfinder = ShortestPathfinder()
+        
+        # set current pathfinder to lefthand
+        pathfinder = lefthand_pathfinder
+        solution = pathfinder.solve(map_graph)
 
 
         ### -------------------------------------------------------
         ### RENDERING GRAPHICS
         ### -------------------------------------------------------
-        # create turtle screen
+        # create turtle screen and display title
         window = turtle.Screen()
+        window.title(self.title)
 
         # use Renderer to render map and spawn the drone
         Renderer.render_map(map.layout)
-        drone_sprite = Renderer.spawn_drone(drone.current_pos, drone.orientation)
+        drone_sprite = Renderer.render_drone(drone.current_pos, drone.orientation)
 
 
 
         ### -------------------------------------------------------
         ### CATCH KEY PRESS EVENTS
         ### -------------------------------------------------------
-        
+        # window.onkey(
+        #     lambda: 
+        #         drone_controller. or
+        #         , 
+        #     "m"
+        # )
 
 
-        # this must be the last line in the turtle program
+        ### this must be the last line in the turtle program
+        window.listen()
         window.mainloop()
 
         # # create the turtle screen

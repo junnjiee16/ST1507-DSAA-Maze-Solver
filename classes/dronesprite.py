@@ -1,11 +1,10 @@
 import turtle 
 
 class DroneSprite(turtle.Turtle):
-    def __init__(self):
+    def __init__(self, orientation):
         super().__init__()
-        self.shape("turtle")
-        self.shapesize(0.5, 0.5)
+        self.hideturtle()
         self.penup()
-        self.speed(0)
         self.color("red")
+        self.orientation = orientation
 
