@@ -1,13 +1,11 @@
 import turtle
 
-
 # map object, stores necessary metadata for the map
 class Map:
-    def __init__(self, map_layout, start_position, end_position):
+    def __init__(self, map_layout, start_pos, end_pos):
         self.__layout = map_layout
-        self.__start_position = start_position
-        self.__end_position = end_position
-
+        self.__start_pos = start_pos
+        self.__end_pos = end_pos
 
     # getter functions
     @property
@@ -15,12 +13,12 @@ class Map:
         return self.__layout
 
     @property
-    def start_position(self):
-        return self.__start_position
+    def start_pos(self):
+        return self.__start_pos
     
     @property
-    def end_position(self):
-        return self.__end_position
+    def end_pos(self):
+        return self.__end_pos
 
 
     # def draw(self): # draw the map
