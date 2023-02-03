@@ -1,11 +1,8 @@
-import turtle 
+import turtle
 
-class DroneSprite(turtle.Turtle):
-    def __init__(self, current_pos, orientation):
-        super().__init__()
-        self.hideturtle()
-        self.penup()
-        self.color("red")
+class Sprite:
+    def __init__(self, color, current_pos=None, orientation=None):
+        self.__color = color
         self.__orientation = orientation
         self.__current_pos = current_pos
 

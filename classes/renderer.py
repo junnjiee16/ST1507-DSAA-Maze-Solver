@@ -47,17 +47,30 @@ class Renderer:
                 block.stamp()
 
 
-    def render_drone(current_pos, orientation, drone=None):
+    def render_drone(drone, drone_sprite=None):
         '''
             Updates the location and orientation given DroneSprite object on the screen. 
             If no DroneSprite object is given, a new DroneSprite object will be created 
             and returned.
         '''
         # if no DroneSprite object is given, create a new one and return it
-        if drone == None:
-            drone = DroneSprite(orientation)
-            drone.goto(current_pos[0] * 24, current_pos[1] * 24)
-            drone.showturtle()
-            return drone
+        if drone_sprite == None:
+            drone_sprite = DroneSprite(drone.current_pos, drone.orientation)
+            drone_sprite.goto(drone.current_pos[0] * 24, drone.current_pos[1] * 24)
+            drone_sprite.showturtle()
+            return drone_sprite
 
+
+        ### if a DroneSprite object is given, update its location and orientation
         
+        # check if orientation changed
+        if drone.orientation != drone_sprite.orientation:
+            drone_sprite.right(drone.prev_turn_angle)
+            # update the new orientation of the drone
+            drone_sprite.orientation = drone.orientation
+
+        # check if position changed
+        if drone.current_pos != drone_sprite.current_pos:
+            drone_sprite.goto(drone.current_pos[0] * 24, drone.current_pos[1] * 24)
+            # update the current position of the drone
+            drone_sprite.current_pos = drone.current_pos

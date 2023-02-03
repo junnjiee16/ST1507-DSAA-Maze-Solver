@@ -3,12 +3,12 @@ import networkx as nx
 # Parent class pathfinder
 class Pathfinder:
     def __init__(self):
-        self.__solution = None
-        self.__algorithm_name = None
+        self._solution = None
+        self._algorithm_name = None
 
     @property
     def algorithm_name(self):
-        return self.__algorithm_name
+        return self._algorithm_name
 
     def solve(self, graph):
         raise NotImplementedError("This method must be implemented in a subclass")

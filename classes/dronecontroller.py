@@ -17,7 +17,7 @@ class DroneController:
         self.__instructions = value
 
     # move drone and update drone status
-    def move_drone(self):
+    def move(self):
         # check if there are still instructions to be executed
         if self.__current_instruction < len(self.__instructions):
             # get the next instruction
@@ -25,9 +25,13 @@ class DroneController:
             self.__current_instruction += 1
 
             # check if the instruction is a turn or a move
-            if type(instruction) == int:
-                self.__drone.orientation = self.__drone.orientation + instruction
+            if type(instruction) == list:
+                self.__drone.prev_turn_angle = instruction[0]
+                self.__drone.orientation = instruction[1]
 
             elif type(instruction) == tuple: # tuple means its a move
-                self.droneDrawing.goto(instruction)
+                self.__drone.current_pos = instruction
                 self.__drone.steps_taken = self.__drone.steps_taken + 1 # update the number of steps taken by the drone
+        
+        else:
+            return True

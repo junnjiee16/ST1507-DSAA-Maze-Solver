@@ -11,6 +11,7 @@ from classes.lefthandpathfinder import LeftHandPathfinder
 from classes.shortestpathfinder import ShortestPathfinder
 
 # media imports
+from classes.sprite import Sprite
 from classes.renderer import Renderer
 
 
@@ -34,7 +35,6 @@ class Application:
             return
 
 
-
         ### -------------------------------------------------------
         ### RUN ALL PROGRAM LOGIC FIRST BEFORE RENDERING ANYTHING
         ### -------------------------------------------------------
@@ -49,34 +49,45 @@ class Application:
         # instantiate lefthand and shortest pathfinder objects
         lefthand_pathfinder = LeftHandPathfinder()
         shortest_pathfinder = ShortestPathfinder()
-        
+
         # set current pathfinder to lefthand
         pathfinder = lefthand_pathfinder
         solution = pathfinder.solve(map_graph)
+
+        # set instructions for drone controller
+        drone_controller.instructions = solution
+        print(len(solution))
 
 
         ### -------------------------------------------------------
         ### RENDERING GRAPHICS
         ### -------------------------------------------------------
+        # load all graphic objects
+        wall_drawing = Sprite(color="grey")
+        road_drawing = Sprite(color="white")
+        start_drawing = Sprite(color="#61ff6e") # green
+        end_drawing = Sprite(color="#56defc") # blue
+
+
         # create turtle screen and display title
         window = turtle.Screen()
         window.title(self.title)
 
         # use Renderer to render map and spawn the drone
         Renderer.render_map(map.layout)
-        drone_sprite = Renderer.render_drone(drone.current_pos, drone.orientation)
+        drone_sprite = Renderer.render_drone(drone)
 
 
 
         ### -------------------------------------------------------
         ### CATCH KEY PRESS EVENTS
         ### -------------------------------------------------------
-        # window.onkey(
-        #     lambda: 
-        #         drone_controller. or
-        #         , 
-        #     "m"
-        # )
+        window.onkey(
+            lambda: 
+                drone_controller.move() or
+                Renderer.render_drone(drone, drone_sprite), 
+            "m"
+        )
 
 
         ### this must be the last line in the turtle program

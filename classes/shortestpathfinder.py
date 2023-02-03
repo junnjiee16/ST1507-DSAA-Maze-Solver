@@ -4,7 +4,7 @@ from classes.pathfinder import Pathfinder
 class ShortestPathfinder(Pathfinder):
     def __init__(self):
         super().__init__()
-        self.__algorithm_name = "Shortest Path Algorithm"
+        self._algorithm_name = "Shortest Path Algorithm"
 
     def solve(self, graph):
         pass
