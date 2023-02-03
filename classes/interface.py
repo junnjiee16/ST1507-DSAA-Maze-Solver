@@ -15,5 +15,3 @@ class Interface(turtle._Screen):
         self.title(title)
         self.setup(width=1.0, height=1.0)
         self.listen()
-
-

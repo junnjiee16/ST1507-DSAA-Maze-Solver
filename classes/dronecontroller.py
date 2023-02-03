@@ -17,7 +17,7 @@ class DroneController:
         self.__instructions = value
 
     # move drone and update drone status
-    def move(self):
+    def execute_instruction(self):
         # check if there are still instructions to be executed
         if self.__current_instruction < len(self.__instructions):
             # get the next instruction

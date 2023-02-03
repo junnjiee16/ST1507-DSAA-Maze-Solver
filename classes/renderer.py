@@ -1,9 +1,13 @@
-from classes.dronesprite import DroneSprite
-from classes.blocksprite import BlockSprite
-
 # renderer class to render graphics object on the screen
 class Renderer:
-    def render_map(map_layout):
+    def __init__(self):
+        self.graphical_objects = dict()
+
+    # store the graphical representation of the sprite in the dictionary
+    def add_sprite(self, sprite):
+        self.graphical_objects[sprite.name] = sprite
+
+    def render_map(self, map_layout):
         '''
             Renders the given map input on the screen. The map
             must be an array of strings, with each string representing
@@ -14,7 +18,12 @@ class Renderer:
             - e: End point
             - .: Normal road
         '''
-        block = BlockSprite()
+        # get all the sprites
+        wall = self.graphical_objects["wall"]
+        road = self.graphical_objects["road"]
+        start = self.graphical_objects["startpoint"]
+        end = self.graphical_objects["endpoint"]
+        
         ### draw the map by placing tiles according to map layout
         for y_pos in range(len(map_layout)): # y axis of map, starting from top (according to map layout in text file)
             for x_pos in range(len(map_layout[y_pos])): # x axis of map starting from left
@@ -28,49 +37,44 @@ class Renderer:
 
                 # check if it is a wall
                 if map_layout[y_pos][x_pos] == "X":
-                    color = "grey"
+                    block = wall
+                # check if it is a road
+                elif map_layout[y_pos][x_pos] == ".":
+                    block = road
                 # check if it is start point
                 elif map_layout[y_pos][x_pos] == "s":
-                    color = "#61ff6e"
-                # check if it is end point
-                elif map_layout[y_pos][x_pos] == "e":
-                    color = "#56defc"
-                # if not anything else, it is normal road
+                    block = start
+                # it is a end point
                 else:
-                    color = "white"
+                    block = end
 
-                # configure the tile drawing
-                block.fillcolor(color)
+                # configure the tile drawing``
                 block.goto((grid_x_pos, grid_y_pos))
 
                 # place down tile on the screen
                 block.stamp()
 
 
-    def render_drone(drone, drone_sprite=None):
+    def render_drone(self, drone, first_spawn=False):
         '''
             Updates the location and orientation given DroneSprite object on the screen. 
-            If no DroneSprite object is given, a new DroneSprite object will be created 
-            and returned.
         '''
-        # if no DroneSprite object is given, create a new one and return it
-        if drone_sprite == None:
-            drone_sprite = DroneSprite(drone.current_pos, drone.orientation)
-            drone_sprite.goto(drone.current_pos[0] * 24, drone.current_pos[1] * 24)
-            drone_sprite.showturtle()
-            return drone_sprite
+        ### Update its location and orientation
+        drone_sprite = self.graphical_objects["drone"]
 
-
-        ### if a DroneSprite object is given, update its location and orientation
-        
         # check if orientation changed
         if drone.orientation != drone_sprite.orientation:
             drone_sprite.right(drone.prev_turn_angle)
             # update the new orientation of the drone
             drone_sprite.orientation = drone.orientation
 
-        # check if position changed
-        if drone.current_pos != drone_sprite.current_pos:
+        # if orientation did not change, means the position changed
+        elif drone.current_pos != drone_sprite.current_pos:
             drone_sprite.goto(drone.current_pos[0] * 24, drone.current_pos[1] * 24)
             # update the current position of the drone
             drone_sprite.current_pos = drone.current_pos
+
+        # if it is the first spawn, place the drone on the screen
+        elif first_spawn: 
+            drone_sprite.goto(drone_sprite.current_pos[0] * 24, drone_sprite.current_pos[1] * 24)
+            drone_sprite.showturtle()
