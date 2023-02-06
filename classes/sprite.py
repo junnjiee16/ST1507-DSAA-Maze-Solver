@@ -13,7 +13,7 @@ class Sprite(turtle.Turtle):
             self.pencolor(pencolor)
 
         self.shape(shape)
-        self.shapesize(shapesize)
+        self.shapesize(shapesize) # 1 unit = 20 pixels for shapesize()
         self.speed(speed)
 
         self.__name = name

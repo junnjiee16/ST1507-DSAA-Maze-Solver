@@ -6,5 +6,5 @@ class ShortestPathfinder(Pathfinder):
         super().__init__()
         self._algorithm_name = "Shortest Path Algorithm"
 
-    def solve(self, graph):
+    def solve(self, map_graph):
         pass

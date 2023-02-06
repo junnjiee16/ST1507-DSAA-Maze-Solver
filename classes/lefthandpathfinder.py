@@ -77,9 +77,9 @@ class LeftHandPathfinder(Pathfinder):
                                 # update the new orientation according to the direction we turned
                                 index = (index + turn[direction]) % 4
 
-                            if direction != 1: # if not forward, add to route instructions
-                                # store the new orientation of the drone as well as the angle to turn
-                                route_instructions.append([turn_angle[direction], orientation[index]])
+                                if direction != 1: # if not forward, add to route instructions
+                                    # store the new orientation of the drone as well as the angle to turn
+                                    route_instructions.append([turn_angle[direction], orientation[index]])
 
                             # update position and add to route instructions
                             x, y = x_next, y_next
