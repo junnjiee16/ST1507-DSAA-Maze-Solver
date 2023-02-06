@@ -1,6 +1,3 @@
-import turtle
-from classes.drone import Drone
-
 # execute instructions to drive the drone. Controller is unique to each drone
 class DroneController:
     def __init__(self, drone, instructions=None):

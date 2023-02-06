@@ -119,6 +119,15 @@ class Application:
             gui.command_change_algorithm, "Tab"
         )
 
+        # # Extra feature activation keys (Jun Jie)
+        # window.onkey(
+        #     gui.command_activate_multiple_endpoints_problem, "1"
+        # )
+
+        # window.onkey(
+        #     gui.command_activate_random_obstacles_problem, "2"
+        # )
+
         window.listen()
 
         ### this must be the last line in the turtle program

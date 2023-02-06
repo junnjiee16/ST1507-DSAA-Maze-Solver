@@ -1,5 +1,3 @@
-import turtle
-
 # Drone object to keep track of steps taken and execute instructions (the maze solution)
 class Drone:
     def __init__(self, name, current_pos):

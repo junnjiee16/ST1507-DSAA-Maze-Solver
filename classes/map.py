@@ -1,5 +1,3 @@
-import turtle
-
 # map object, stores necessary metadata for the map
 class Map:
     def __init__(self, map_layout, start_pos, end_pos):
