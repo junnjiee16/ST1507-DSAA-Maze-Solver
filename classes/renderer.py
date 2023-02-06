@@ -91,8 +91,26 @@ class Renderer:
         ### Update its location and orientation
         drone_sprite = self.graphics_assets[drone.name]
 
+        # if spawn is true, renders drone sprite immediately at the current position of drone
+        if spawn:
+            drone_sprite.hideturtle()
+
+            # move the drone to the starting position
+            drone_sprite.goto(drone.current_pos[0] * self.__pixel_size - self.__offset_x, drone.current_pos[1] * self.__pixel_size - self.__offset_y)
+            # change the orientation of the drone
+            drone_sprite.setheading(0)
+
+            # update the current position of the drone
+            drone_sprite.current_pos = drone.current_pos
+            # update the orientation of the drone
+            drone_sprite.orientation = drone.orientation
+
+            # show the drone
+            drone_sprite.showturtle()
+
+
         # check if orientation changed
-        if drone.orientation != drone_sprite.orientation:
+        elif drone.orientation != drone_sprite.orientation:
             drone_sprite.right(drone.prev_turn_angle)
             # update the new orientation of the drone
             drone_sprite.orientation = drone.orientation
@@ -102,13 +120,6 @@ class Renderer:
             drone_sprite.goto(drone.current_pos[0] * self.__pixel_size - self.__offset_x, drone.current_pos[1] * self.__pixel_size - self.__offset_y)
             # update the current position of the drone
             drone_sprite.current_pos = drone.current_pos
-
-        # returns drone to spawn position
-        elif spawn:
-            drone_sprite.hideturtle()
-            drone_sprite.goto(drone_sprite.current_pos[0] * self.__pixel_size - self.__offset_x, drone_sprite.current_pos[1] * self.__pixel_size - self.__offset_y)
-            drone_sprite.setheading(0)
-            drone_sprite.showturtle()
 
 
     def __calculate_offset(self, map_x_length, map_y_length):

@@ -15,6 +15,7 @@ class DroneController:
     @instructions.setter
     def instructions(self, value):
         self.__instructions = value
+        self.__current_instruction = 0
 
     # move drone and update drone status
     def execute_instruction(self):

@@ -5,6 +5,7 @@ from classes.utils import Utils
 from classes.map import Map
 from classes.drone import Drone
 from classes.dronecontroller import DroneController
+from classes.objectstatemanager import ObjectStateManager
 
 # pathfinder imports
 from classes.lefthandpathfinder import LeftHandPathfinder
@@ -52,12 +53,9 @@ class Application:
         map_graph = Utils.map_to_graph(map)
 
         # instantiate lefthand and shortest pathfinder objects
-        lefthand_pathfinder = LeftHandPathfinder()
-        shortest_pathfinder = ShortestPathfinder()
+        pathfinders = ObjectStateManager([LeftHandPathfinder(), ShortestPathfinder()])
 
-        # set current pathfinder to lefthand
-        pathfinder = lefthand_pathfinder
-        solution = pathfinder.solve(map_graph)
+        solution = pathfinders.current.solve(map_graph)
 
         # set instructions for drone controller
         drone_controller.instructions = solution
@@ -85,8 +83,7 @@ class Application:
         # create turtle screen and display title
         window = turtle.Screen()
 
-        algorithm_name = pathfinder.algorithm_name
-        title_bar = f"{algorithm_name}, Steps Taken: {drone.steps_taken}"
+        title_bar = f"{pathfinders.current.algorithm_name}, Steps Taken: {drone.steps_taken}"
         window.title(title_bar)
 
         # use Renderer to render map, title and spawn the drone
@@ -108,11 +105,18 @@ class Application:
         ### series of commands to be executed on key press
 
         # this activates on "m" key press, it moves the drone, renders new position and updates the title bar
-        gui.move_drone_event_listener(drone_controller, renderer.render_drone, drone, algorithm_name)
+        gui.move_drone_event_listener(drone_controller, renderer.render_drone, drone, pathfinders)
+
+        # this activates on "Tab" key press, it changes the pathfinder algorithm and updates the title bar
+        gui.change_algorithm_event_listener(drone_controller, renderer.render_drone, drone, pathfinders, map_graph)
 
         # listen for key presses
         window.onkey(
             gui.command_move_drone, "m"
+        )
+
+        window.onkey(
+            gui.command_change_algorithm, "Tab"
         )
 
         window.listen()

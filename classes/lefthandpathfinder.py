@@ -24,7 +24,8 @@ class LeftHandPathfinder(Pathfinder):
             facingWest = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 
             # keep track of orientation when moving through maze
-            orientation = ["N", "E", "S", "W"]
+            # North, East, South, West. according to turtle orientations
+            orientation = [90, 0, 270, 180]
             compass = [facingNorth, facingEast, facingSouth, facingWest]
 
             # keep track of how to turn the compass and the direction
