@@ -1,10 +1,18 @@
 import turtle
 
-# renderer class to render graphics object on the screen
+
 class Renderer:
     '''
-    pixel_size: size of each unit space on the map in pixels
+    This class is used to render the map and the drone on the screen.
 
+    Parameters:
+        pixel_size (int): pixel size of each unit space on the map
+
+    Attributes:
+        graphics_assets (dict): dictionary of sprites
+        pixel_size (int): pixel size of each unit space on the map
+        offset_x (int): x offset of the map
+        offset_y (int): y offset of the map
     '''
     def __init__(self, pixel_size):
         self.graphics_assets = dict()
@@ -16,13 +24,31 @@ class Renderer:
   
     @property
     def pixel_size(self):
-        return self.__pixel_size
+        return self.__pixel_size  # returns the pixel size of each unit space on the map
 
-    # store the graphic representation of the sprite in the dictionary
     def add_sprite(self, sprite):
+        '''
+        Adds a sprite to the renderer.
+
+        Parameters:
+            sprite (Sprite): sprite object
+
+        Returns:
+            None
+        '''
         self.graphics_assets[sprite.name] = sprite
 
     def render_title(self, title, map_y_length):
+        '''
+        Renders the title of the map on the screen.
+
+        Parameters:
+            title (str): title of the map
+            map_y_length (int): y length of the map
+
+        Returns:
+            None
+        '''
         max_height = map_y_length * self.__pixel_size - self.__offset_y
 
         # create a new turtle object to draw the title
@@ -35,14 +61,13 @@ class Renderer:
 
     def render_map(self, map):
         '''
-            Renders the given map input on the screen. The map
-            must be an array of strings, with each string representing
-            a row of the map. Each character in the string represents
-            a block in the map. The following characters are used:
-            - X: Wall
-            - s: Start point
-            - e: End point
-            - .: Normal road
+        Renders the map on the screen.
+
+        Parameters:
+            map (Map): map object
+
+        Returns:
+            None
         '''
         # calculate offset
         self.__calculate_offset(map.x_length, map.y_length)
@@ -56,13 +81,11 @@ class Renderer:
         # get map layout
         map_layout = map.layout
 
-        
-        ### draw the map by placing tiles according to map layout
-        for y_pos in range(len(map_layout)): # y axis of map, starting from top (according to map layout in text file)
-            for x_pos in range(len(map_layout[y_pos])): # x axis of map starting from left
+        # draw the map by placing tiles according to map layout
+        for y_pos in range(len(map_layout)):  # y axis of map starting from bottom
+            for x_pos in range(len(map_layout[y_pos])):  # x axis of map starting from left
                 
-                # reverse y_pos to start from bottom
-                y_reversed = len(map_layout) - y_pos - 1
+                y_reversed = len(map_layout) - y_pos - 1  # reverse y_pos to start from bottom
 
                 # calculate position of grid
                 grid_x_pos = self.__pixel_size * x_pos - self.__offset_x
@@ -90,10 +113,16 @@ class Renderer:
 
     def render_drone(self, drone, spawn=False):
         '''
-            Updates the location and orientation given DroneSprite object on the screen. 
+        Renders the drone on the screen.
+
+        Parameters:
+            drone (Drone): drone object
+            spawn (bool): if true, renders drone sprite immediately at the current position of drone
+
+        Returns:
+            None
         '''
-        ### Update its location and orientation
-        drone_sprite = self.graphics_assets[drone.name]
+        drone_sprite = self.graphics_assets[drone.name]  # get the drone sprite
 
         # if spawn is true, renders drone sprite immediately at the current position of drone
         if spawn:
@@ -112,7 +141,6 @@ class Renderer:
             # show the drone
             drone_sprite.showturtle()
 
-
         # check if orientation changed
         elif drone.orientation != drone_sprite.orientation:
             drone_sprite.right(drone.prev_turn_angle)
@@ -128,7 +156,14 @@ class Renderer:
 
     def __calculate_offset(self, map_x_length, map_y_length):
         '''
-            Calculates the offset of the map so that it will be centered on the screen.
+        Calculates the offset of the map.
+
+        Parameters:
+            map_x_length (int): x length of the map
+            map_y_length (int): y length of the map
+
+        Returns:
+            None
         '''
         # calculate the offset
         self.__offset_x = (map_x_length * self.__pixel_size) / 2
