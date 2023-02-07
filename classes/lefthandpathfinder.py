@@ -24,7 +24,8 @@ class LeftHandPathfinder(Pathfinder):
             facingWest = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 
             # keep track of orientation when moving through maze
-            orientation = ["N", "E", "S", "W"]
+            # North, East, South, West. according to turtle orientations
+            orientation = [90, 0, 270, 180]
             compass = [facingNorth, facingEast, facingSouth, facingWest]
 
             # keep track of how to turn the compass and the direction
@@ -77,9 +78,9 @@ class LeftHandPathfinder(Pathfinder):
                                 # update the new orientation according to the direction we turned
                                 index = (index + turn[direction]) % 4
 
-                            if direction != 1: # if not forward, add to route instructions
-                                # store the new orientation of the drone as well as the angle to turn
-                                route_instructions.append([turn_angle[direction], orientation[index]])
+                                if direction != 1: # if not forward, add to route instructions
+                                    # store the new orientation of the drone as well as the angle to turn
+                                    route_instructions.append([turn_angle[direction], orientation[index]])
 
                             # update position and add to route instructions
                             x, y = x_next, y_next

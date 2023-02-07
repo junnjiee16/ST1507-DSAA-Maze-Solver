@@ -1,5 +1,3 @@
-import networkx as nx
-
 # Parent class pathfinder
 class Pathfinder:
     def __init__(self):

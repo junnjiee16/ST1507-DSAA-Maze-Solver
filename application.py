@@ -5,15 +5,17 @@ from classes.utils import Utils
 from classes.map import Map
 from classes.drone import Drone
 from classes.dronecontroller import DroneController
+from classes.objectstatemanager import ObjectStateManager
 
 # pathfinder imports
 from classes.lefthandpathfinder import LeftHandPathfinder
 from classes.shortestpathfinder import ShortestPathfinder
 
-# media imports
+# graphics related imports
 from classes.sprite import Sprite
 from classes.renderer import Renderer
 
+# user interaction imports
 from classes.gui import GUI
 
 
@@ -33,18 +35,10 @@ class Application:
         self.program_name = program_name
         self.authors = authors
         self.class_name = class_name
-        self.title = f"{self.program_name}: Done by {self.authors}, {self.class_name}"
-        self.screen = turtle.Screen()
-        self.renderer = Renderer()
+        self.title = f"{self.program_name}: Done by {self.authors} {self.class_name}"
 
-    def handleTimer(self):
-        if bool == True:
-            self.renderer.render_drone(drone)
-            bool = False
-        self.screen.ontimer(self.handleTimer(drone, bool), 1000)
 
     def startProgram(self, file_name):
-        render_drone = False
 
         ### -------------------------------------------------------
         ### READ AND SCAN MAP FILE
@@ -60,19 +54,17 @@ class Application:
         ### -------------------------------------------------------
         # instantiate map and drone objects
         map = Map(map_text, start_pos, end_pos)
-        drone = Drone(map.start_pos)
+        drone_name = "drone1"
+        drone = Drone(drone_name, map.start_pos)
         drone_controller = DroneController(drone)
 
         # get graph from map
         map_graph = Utils.map_to_graph(map)
 
         # instantiate lefthand and shortest pathfinder objects
-        lefthand_pathfinder = LeftHandPathfinder()
-        shortest_pathfinder = ShortestPathfinder()
+        pathfinders = ObjectStateManager([LeftHandPathfinder(), ShortestPathfinder()])
 
-        # set current pathfinder to lefthand
-        pathfinder = lefthand_pathfinder
-        solution = pathfinder.solve(map_graph)
+        solution = pathfinders.current.solve(map_graph)
 
         # set instructions for drone controller
         drone_controller.instructions = solution
@@ -80,38 +72,72 @@ class Application:
 
 
         ### -------------------------------------------------------
-        ### RENDERING GRAPHICS
+        ### LOADING NECCESSARY GRAPHICS ASSETS
         ### -------------------------------------------------------
+        renderer = Renderer(pixel_size=25)
+        pixel_ratio = renderer.pixel_size / 20 # 20 pixels is 1 unit for shapesize()
 
         # load all required graphic objects into renderer
-        self.renderer.add_sprite(Sprite(name="drone", color="red", current_pos=drone.current_pos, orientation=drone.orientation))
+        renderer.add_sprite(Sprite(name=drone_name, color="red", current_pos=drone.current_pos, orientation=drone.orientation))
 
-        self.renderer.add_sprite(Sprite(name="wall", color="grey", pencolor="black", shape="square", shapesize=24/20, speed=0))
-        self.renderer.add_sprite(Sprite(name="road", color="white", pencolor="black", shape="square", shapesize=24/20, speed=0))
-        self.renderer.add_sprite(Sprite(name="startpoint", color="#61ff6e", pencolor="black", shape="square", shapesize=24/20, speed=0))
-        self.renderer.add_sprite(Sprite(name="endpoint", color="#56defc", pencolor="black", shape="square", shapesize=24/20, speed=0))
+        renderer.add_sprite(Sprite(name="wall", color="grey", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
+        renderer.add_sprite(Sprite(name="road", color="white", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
+        renderer.add_sprite(Sprite(name="startpoint", color="#61ff6e", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
+        renderer.add_sprite(Sprite(name="endpoint", color="#56defc", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
 
+
+        ### -------------------------------------------------------
+        ### RENDERING GRAPHICS
+        ### -------------------------------------------------------
         # create turtle screen and display title
-        # window = turtle.Screen()
-        self.screen.title(self.title)
+        window = turtle.Screen()
 
-        # use Renderer to render map and spawn the drone
-        self.renderer.render_map(map.layout)
-        self.renderer.render_drone(drone, first_spawn=True)
+        title_bar = f"{pathfinders.current.algorithm_name}, Steps Taken: {drone.steps_taken}"
+        window.title(title_bar)
 
+        # use Renderer to render map, title and spawn the drone
+        renderer.render_map(map)
+        renderer.render_title(self.title, map.y_length)
+        renderer.render_drone(drone, spawn=True)
 
 
         ### -------------------------------------------------------
-        ### CATCH KEY PRESS EVENTS
+        ### GUI CLASS: CAPTURES KEY PRESS EVENTS
         ### -------------------------------------------------------
-        self.screen.onkey(
-            lambda: 
-                GUI.move_drone(drone_controller, render_drone),
-            "m"
+        gui = GUI(window)
+
+
+        ### -------------------------------------------------------
+        ### CATCH KEY PRESS EVENTS, THIS IS THE "MAIN LOOP" OF THE PROGRAM
+        ### -------------------------------------------------------
+
+        ### series of commands to be executed on key press
+
+        # this activates on "m" key press, it moves the drone, renders new position and updates the title bar
+        gui.move_drone_event_listener(drone_controller, renderer.render_drone, drone, pathfinders)
+
+        # this activates on "Tab" key press, it changes the pathfinder algorithm and updates the title bar
+        gui.change_algorithm_event_listener(drone_controller, renderer.render_drone, drone, pathfinders, map_graph)
+
+        # listen for key presses
+        window.onkey(
+            gui.command_move_drone, "m"
         )
 
+        window.onkey(
+            gui.command_change_algorithm, "Tab"
+        )
 
-        self.handleTimer(drone, render_drone)
+        # # Extra feature activation keys (Jun Jie)
+        # window.onkey(
+        #     gui.command_activate_multiple_endpoints_problem, "1"
+        # )
+
+        # window.onkey(
+        #     gui.command_activate_random_obstacles_problem, "2"
+        # )
+
+        window.listen()
+
         ### this must be the last line in the turtle program
-        self.screen.listen()
-        self.screen.mainloop()
+        window.mainloop()
