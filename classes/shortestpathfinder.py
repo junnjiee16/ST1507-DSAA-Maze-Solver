@@ -6,6 +6,7 @@ class ShortestPathfinder(Pathfinder):
     def __init__(self):
         super().__init__()
         self._algorithm_name = "Shortest Path Algorithm"
+        self._id = 1
 
     def solve(self, map_graph):
         if self._solution != None:
@@ -65,4 +66,4 @@ class ShortestPathfinder(Pathfinder):
             return route_instructions                
 
         else:
-            return None
+            return []

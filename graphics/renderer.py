@@ -10,6 +10,9 @@ class Renderer:
         self.__offset_x = None
         self.__offset_y = None
 
+        # keep the max height of the map so we can render words above
+        self.__map_max_height = None
+
     @property
     def pixel_size(self):
         return self.__pixel_size
@@ -18,15 +21,24 @@ class Renderer:
     def add_sprite(self, sprite):
         self.graphics_assets[sprite.name] = sprite
 
-    def render_title(self, title, map_y_length):
-        max_height = map_y_length * self.__pixel_size - self.__offset_y
 
+    # only re render this if new map is loaded into program
+    def render_no_solution(self, solution):
+        writer = self.graphics_assets['writer']
+        if solution == []:
+            writer.goto(-self.__offset_x - (self.__pixel_size / 2), self.__map_max_height + 25)
+            writer.write("No solution for this maze!", font=("Arial", 12, "normal"))
+        else:
+            writer.clear()
+
+
+    def render_title(self, title):
         # create a new turtle object to draw the title
         title_turtle = turtle.Turtle()
         title_turtle.hideturtle()
         title_turtle.penup()
         title_turtle.color("black")
-        title_turtle.goto(-self.__offset_x - (self.__pixel_size / 2), max_height + 5)
+        title_turtle.goto(-self.__offset_x - (self.__pixel_size / 2), self.__map_max_height + 5)
         title_turtle.write(title, font=("Arial", 12, "normal"))
 
     def render_map(self, map):
@@ -42,6 +54,9 @@ class Renderer:
         '''
         # calculate offset
         self.__calculate_offset(map.x_length, map.y_length)
+
+        # calculate max height
+        self.__calculate_map_max_height(map.y_length)
 
         # get all the sprites
         wall = self.graphics_assets["wall"]
@@ -122,6 +137,29 @@ class Renderer:
             drone_sprite.current_pos = drone.current_pos
 
 
+    def render_guidelight(self, solution):
+        # load the guide light sprite
+        guide_light = self.graphics_assets["guidelight"]
+        for i in range(len(solution) - 1): # minus 1 because we dont want the guidelight to cover up the end point
+            if type(solution[i]) == tuple:
+                guide_light.goto(solution[i][0] * self.__pixel_size - self.__offset_x, solution[i][1] * self.__pixel_size - self.__offset_y)
+                guide_light.stamp()
+
+    def clear_guidelight(self):
+        guide_light = self.graphics_assets["guidelight"]
+        guide_light.clear()
+
+
+    def render_dronetrail(self, drone_name):
+        drone_sprite = self.graphics_assets[drone_name]
+        drone_sprite.pendown()
+
+    def clear_dronetrail(self, drone_name):
+        drone_sprite = self.graphics_assets[drone_name]
+        drone_sprite.clear()
+        drone_sprite.penup()
+
+
     def __calculate_offset(self, map_x_length, map_y_length):
         '''
             Calculates the offset of the map so that it will be centered on the screen.
@@ -129,3 +167,7 @@ class Renderer:
         # calculate the offset
         self.__offset_x = (map_x_length * self.__pixel_size) / 2
         self.__offset_y = (map_y_length * self.__pixel_size) / 2
+
+
+    def __calculate_map_max_height(self, map_y_length):
+        self.__map_max_height = map_y_length * self.__pixel_size - self.__offset_y

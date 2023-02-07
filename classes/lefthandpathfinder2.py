@@ -1,4 +1,3 @@
-import networkx as nx
 from classes.pathfinder import Pathfinder
 
 # inherit pathfinder class
@@ -13,14 +12,7 @@ class LeftHandPathfinder(Pathfinder):
         if self._solution != None:
             return self._solution
 
-        elif nx.has_path(map_graph, map_graph.start_pos, map_graph.end_pos) == False:
-            return []
-
         else:
-            # keep track of how many times we visited start node. if more than 4 times means we stuck in infinite loop
-            start_pos = map_graph.start_pos
-            visited_start_counter = 0
-
             x, y = map_graph.start_pos
 
             # array to store steps
@@ -54,45 +46,50 @@ class LeftHandPathfinder(Pathfinder):
                 # get current orientation
                 current_orientation = compass[index]
 
-                # step 1: check if left can, if can, check if infinite loop exists
-                # index 0 means left side, 2nd indexing is to get the tuple x and y values
+                # find all neighbors of current node, convert to list as function returns a iterator
+                neighbors = list(map_graph.neighbors((x, y)))
+
+                # to check if infinite loop:
+                # check the diagonal and left and bottom
                 left_x, left_y = x + current_orientation[0][0], y + current_orientation[0][1]
+                bottom_x, bottom_y = x + current_orientation[3][0], y + current_orientation[3][1]
+                diagonal_x, diagonal_y = x + check_diagonals[index][0], y + check_diagonals[index][1]
 
-                if map_graph.has_node((left_x, left_y)):
+                if map_graph.has_node((left_x, left_y)) and map_graph.has_node((bottom_x, bottom_y)) and map_graph.has_node((diagonal_x, diagonal_y)):
+                    print("inf loop")
+                    
+                    front_x, front_y = x + current_orientation[1][0], y + current_orientation[1][1]
 
-                    # to check if infinite loop: check the diagonal and left and bottom
-                    # if it is a infinite loop, check if there is a wall in front
-                    # if wall in front, turn right so the left hand touches the wall
-                    # else walk forward to escape the loop
-                    bottom_x, bottom_y = x + current_orientation[3][0], y + current_orientation[3][1]
-                    diagonal_x, diagonal_y = x + check_diagonals[index][0], y + check_diagonals[index][1]
-                    if map_graph.has_node((bottom_x, bottom_y)) and map_graph.has_node((diagonal_x, diagonal_y)):
-
-                        # if its not a wall, go forward, else go to the right
-                        front_x, front_y = x + current_orientation[1][0], y + current_orientation[1][1]
-                        if map_graph.has_node((front_x, front_y)):
-                            x, y = front_x, front_y
-                            route_instructions.append((x, y))
-                        else:
-                            # update the new orientation, turn right
-                            index = (index + turn[2]) % 4
-                            # store the new orientation of the drone, as well as its turn angle
-                            route_instructions.append([turn_angle[2], orientation[index]])
-
-                    # no infinite loop, drone can go to the left safely
-                    else:
-                        # update the new orientation, turn left means index 0
-                        index = (index + turn[0]) % 4
+                    # if the front is a wall, turn right
+                    if map_graph.has_node((front_x, front_y)) == False:
+                        # update the new orientation, turn right
+                        index = (index + turn[2]) % 4
                         # store the new orientation of the drone, as well as its turn angle
-                        route_instructions.append([turn_angle[0], orientation[index]])
-                        # update current position and add new position to route instructions
-                        x, y = left_x, left_y
+                        route_instructions.append([turn_angle[2], orientation[index]])
+
+                    # if no wall, walk forward
+                    else:
+                        x, y = front_x, front_y
                         route_instructions.append((x, y))
 
 
-                # we need to check every direction, starting from forward > right > back
+                # if neighbors is 4, means all 4 directions are available, always turn left
+                elif len(neighbors) == 4:
+                    # update the new orientation, turn left means index 0
+                    index = (index + turn[0]) % 4
+
+                    # store the new orientation of the drone, as well as its turn angle
+                    route_instructions.append([turn_angle[0], orientation[index]])
+
+                    # update current position and add new position to route instructions
+                    x, y = x + current_orientation[0][0], y + current_orientation[0][1]
+                    route_instructions.append((x, y))
+
+
+                # else if 1, 2 or 3 neighbours, we need to check every direction, starting from left > forward > right > back
                 else:
-                    for direction in range(1, 4):
+                    # direction is in order of left, forward, right, back
+                    for direction in range(len(current_orientation)):
                         # check if the next node in the direction exists
                         x_next, y_next = x + current_orientation[direction][0], y + current_orientation[direction][1]
 
@@ -108,7 +105,8 @@ class LeftHandPathfinder(Pathfinder):
                                 # update the new orientation according to the direction we turned
                                 index = (index + turn[direction]) % 4
 
-                                if direction != 1: # if not forward, add turning to route instructions
+                                if direction != 1: # if not forward, add to route instructions
+                                    # store the new orientation of the drone as well as the angle to turn
                                     route_instructions.append([turn_angle[direction], orientation[index]])
 
                             # update position and add to route instructions
@@ -117,14 +115,6 @@ class LeftHandPathfinder(Pathfinder):
 
                             # break out of loop as we found the next node
                             break
-
-                # check if we visited the start node
-                if (x, y) == start_pos:
-                    visited_start_counter += 1
-                    if visited_start_counter == 4:
-                        # impossible to escape, exit program
-                        return []
-                 
 
             # set solution to route instructions
             self._solution = route_instructions

@@ -1,4 +1,4 @@
-from classes.node import Node
+from assets.node import Node
 
 class DoublyCircularLinkedList:
     def __init__(self):

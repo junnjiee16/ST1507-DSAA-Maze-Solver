@@ -12,8 +12,8 @@ from classes.lefthandpathfinder import LeftHandPathfinder
 from classes.shortestpathfinder import ShortestPathfinder
 
 # graphics related imports
-from classes.sprite import Sprite
-from classes.renderer import Renderer
+from graphics.sprite import Sprite
+from graphics.renderer import Renderer
 
 # user interaction imports
 from classes.gui import GUI
@@ -29,16 +29,24 @@ class Application:
         self.title = f"{self.program_name}: Done by {self.authors} {self.class_name}"
 
 
-    def startProgram(self, file_name):
+    def startProgram(self):
+
+        # create turtle screen and display title
+        window = turtle.Screen()
+
+        ### -------------------------------------------------------
+        ### GUI CLASS: CAPTURES KEY PRESS EVENTS
+        ### -------------------------------------------------------
+        gui = GUI(window)
+        filename = gui.get_input("Map File Input", "Please enter file name:")
 
         ### -------------------------------------------------------
         ### READ AND SCAN MAP FILE
         ### -------------------------------------------------------
         print("Reading and scanning map file")
-        map_text, start_pos, end_pos = Utils.readMapFile(file_name)
+        map_text, start_pos, end_pos = Utils.readMapFile("map_files/" + filename)
         if map_text == None:
             return
-
 
         ### -------------------------------------------------------
         ### RUN ALL PROGRAM LOGIC FIRST BEFORE RENDERING ANYTHING
@@ -59,7 +67,6 @@ class Application:
 
         # set instructions for drone controller
         drone_controller.instructions = solution
-        print(len(solution))
 
 
         ### -------------------------------------------------------
@@ -70,32 +77,28 @@ class Application:
 
         # load all required graphic objects into renderer
         renderer.add_sprite(Sprite(name=drone_name, color="red", current_pos=drone.current_pos, orientation=drone.orientation))
+        renderer.add_sprite(Sprite(name="writer", color="black", pencolor="black", speed=0))
 
         renderer.add_sprite(Sprite(name="wall", color="grey", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
         renderer.add_sprite(Sprite(name="road", color="white", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
         renderer.add_sprite(Sprite(name="startpoint", color="#61ff6e", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
         renderer.add_sprite(Sprite(name="endpoint", color="#56defc", pencolor="black", shape="square", shapesize=pixel_ratio, speed=0))
+        
+        renderer.add_sprite(Sprite(name="guidelight", color="yellow", pencolor="black", shape="circle", shapesize=pixel_ratio, speed=0))
 
 
         ### -------------------------------------------------------
         ### RENDERING GRAPHICS
         ### -------------------------------------------------------
-        # create turtle screen and display title
-        window = turtle.Screen()
-
         title_bar = f"{pathfinders.current.algorithm_name}, Steps Taken: {drone.steps_taken}"
         window.title(title_bar)
 
         # use Renderer to render map, title and spawn the drone
         renderer.render_map(map)
-        renderer.render_title(self.title, map.y_length)
+        renderer.render_title(self.title)
         renderer.render_drone(drone, spawn=True)
-
-
-        ### -------------------------------------------------------
-        ### GUI CLASS: CAPTURES KEY PRESS EVENTS
-        ### -------------------------------------------------------
-        gui = GUI(window)
+        renderer.render_dronetrail(drone.name)
+        renderer.render_no_solution(solution)
 
 
         ### -------------------------------------------------------
@@ -108,7 +111,10 @@ class Application:
         gui.move_drone_event_listener(drone_controller, renderer.render_drone, drone, pathfinders)
 
         # this activates on "Tab" key press, it changes the pathfinder algorithm and updates the title bar
-        gui.change_algorithm_event_listener(drone_controller, renderer.render_drone, drone, pathfinders, map_graph)
+        gui.change_algorithm_event_listener(drone_controller, renderer, drone, pathfinders, map_graph)
+
+        # this activates random obstacles to be placed
+        gui.random_obstacles_event_listener()
 
         # listen for key presses
         window.onkey(
@@ -124,8 +130,16 @@ class Application:
         #     gui.command_activate_multiple_endpoints_problem, "1"
         # )
 
+        window.onkey(
+            gui.command_activate_random_obstacles, "2"
+        )
+
         # window.onkey(
-        #     gui.command_activate_random_obstacles_problem, "2"
+        #     gui.command_activate_random_maze, "3"
+        # )
+
+        # window.onkey(
+        #     gui.2nd_feature, "4"
         # )
 
         window.listen()
