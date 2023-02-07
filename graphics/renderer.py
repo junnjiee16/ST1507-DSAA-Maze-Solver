@@ -22,7 +22,7 @@ class Renderer:
         self.graphics_assets[sprite.name] = sprite
 
 
-    # only re render this if new map is loaded into program
+    # re render this on every new algo
     def render_no_solution(self, solution):
         writer = self.graphics_assets['writer']
         if solution == []:
@@ -97,6 +97,11 @@ class Renderer:
 
                 # place down tile on the screen
                 block.stamp()
+
+
+    def reset_drone(self, drone):
+        drone_sprite = self.graphics_assets[drone.name]
+        drone_sprite.reset()
 
 
     def render_drone(self, drone, spawn=False):

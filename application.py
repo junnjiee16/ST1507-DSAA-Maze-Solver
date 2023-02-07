@@ -124,6 +124,10 @@ class Application:
             gui.command_move_drone, "m"
         )
 
+        window.onkeypress(
+            gui.command_move_drone, "n"
+        )
+
         window.onkey(
             gui.command_change_algorithm, "Tab"
         )
