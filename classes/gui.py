@@ -1,10 +1,12 @@
 import turtle
+from classes.mazegenerator import MazeGenerator
 
 class GUI:
     def __init__(self, screen):
         self.moveDrone = False
         self.changeAlgo = False
         self.activate_random_obstacles = False
+        self.generate_maze = False
         self.screen = screen # gui NEEDS to know what screen it is connected to so that it can call the screen's ontimer method to capture events
 
     def command_move_drone(self):
@@ -16,6 +18,8 @@ class GUI:
     def command_activate_random_obstacles(self):
         self.activate_random_obstacles = True
 
+    def command_activate_random_maze(self):
+        self.generate_maze = True
 
     def move_drone_event_listener(self, drone_controller, render_drone, drone, pathfinders):
         if self.changeAlgo == True:
@@ -72,6 +76,20 @@ class GUI:
 
     def random_obstacles_event_listener(self):
         pass
+
+    def random_maze_event_listener(self):
+        if self.generate_maze == True:
+            size = self.get_input("Generate Maze", "Enter the size of the maze (e.g. 10): ")
+            size = int(size)
+
+            maze = MazeGenerator(size, size)
+            maze.generate_maze(0, 0)
+            maze.write_to_file()
+
+            self.generate_maze = False
+            
+        self.screen.ontimer(lambda: self.random_maze_event_listener(), 10)
+
 
     
     def get_input(self, title, prompt):
