@@ -116,6 +116,9 @@ class Application:
         # this activates random obstacles to be placed
         gui.random_obstacles_event_listener()
 
+        # this activates random maze to be placed
+        gui.random_maze_event_listener()
+
         # listen for key presses
         window.onkey(
             gui.command_move_drone, "m"
@@ -127,19 +130,19 @@ class Application:
 
         # # Extra feature activation keys (Jun Jie)
         # window.onkey(
-        #     gui.command_activate_multiple_endpoints_problem, "1"
+        #     gui.command_activate_multiple_endpoints_problem, "q"
         # )
 
         window.onkey(
-            gui.command_activate_random_obstacles, "2"
+            gui.command_activate_random_obstacles, "w"
+        )
+
+        window.onkey(
+            gui.command_activate_random_maze, "e"
         )
 
         # window.onkey(
-        #     gui.command_activate_random_maze, "3"
-        # )
-
-        # window.onkey(
-        #     gui.2nd_feature, "4"
+        #     gui.2nd_feature, "r"
         # )
 
         window.listen()

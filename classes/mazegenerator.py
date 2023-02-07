@@ -1,3 +1,4 @@
+import os
 import random
 
 class MazeGenerator:
@@ -54,7 +55,8 @@ class MazeGenerator:
         else:
             self.end = (x, y)
 
-    def write_to_file(self, filename='./map_files/random_maze.txt'):
+    def write_to_file(self, filename='map_files/random_maze.txt'):
+        # write to file
         with open(filename, "w") as f:
             for y, row in enumerate(self.maze):
                 for x, cell in enumerate(row):
