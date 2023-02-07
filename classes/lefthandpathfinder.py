@@ -10,7 +10,6 @@ class LeftHandPathfinder(Pathfinder):
     def solve(self, map_graph):
         if self._solution != None:
             return self._solution
-
         else:
             x, y = map_graph.start_pos
 
@@ -38,12 +37,12 @@ class LeftHandPathfinder(Pathfinder):
             # when changing index, always mod by 4 to keep it within range
             index = 1
             
-            # keep finding the next node to go to until we reach the end
+            # while current position is not the end position, keep moving
             while (x, y) != map_graph.end_pos:
                 # get current orientation
                 current_orientation = compass[index]
 
-                # find all neighbors of current node, convert to list as function returns a iterator
+                # get all neighbors of current position
                 neighbors = list(map_graph.neighbors((x, y)))
 
                 # if neighbors is 4, means all 4 directions are available, always turn left

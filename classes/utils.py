@@ -49,7 +49,7 @@ class Utils:
         print(path)
 
         # join the directory path with the filename
-        abs_file_path = os.path.join(path, filename)
+        abs_file_path = os.path.join(path, filename)  
 
         # check if file exists
         if os.path.exists(abs_file_path):
@@ -68,12 +68,12 @@ class Utils:
             for y in range(len(content)):
                 for x in range(len(content[y])):
                     if content[y][x] not in possible_chars:
-                        print("Error: Invalid character in map")
+                        print("Error: Invalid character in map")  
                         return None, None, None
 
                     elif content[y][x] == 's':
                         if start_point != None:
-                            print("Error: Multiple start points in map")
+                            print("Error: Multiple start points in map")  
                             return None, None, None
                         else:
                             reversed_y = len(content) - 1 - y

@@ -2,6 +2,10 @@ import turtle
 
 # renderer class to render graphics object on the screen
 class Renderer:
+    '''
+    pixel_size: size of each unit space on the map in pixels
+
+    '''
     def __init__(self, pixel_size):
         self.graphics_assets = dict()
         self.__pixel_size = pixel_size # pixel size of each unit space on the map
@@ -9,7 +13,7 @@ class Renderer:
         # calculate how much to offset the map so that it will be centered on the screen
         self.__offset_x = None
         self.__offset_y = None
-
+  
     @property
     def pixel_size(self):
         return self.__pixel_size
