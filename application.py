@@ -19,6 +19,15 @@ from classes.gui import GUI
 
 # class to control the logic of the program
 class Application:
+    """
+    This class ...
+
+    Parameters:
+        program_name (str): name of the program
+
+    Args:
+        program_name (str): name of the program
+    """
     # metadata for the program
     def __init__(self, program_name, authors, class_name):
         self.program_name = program_name
