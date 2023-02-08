@@ -1,5 +1,18 @@
 # Drone object to keep track of steps taken and execute instructions (the maze solution)
 class Drone:
+    '''
+    Drone object to keep track of steps taken and execute instructions (the maze solution)
+    
+    Parameters: 
+        name (str): name of the drone
+        current_pos (tuple): current position of the drone (x, y)
+    Attributes:
+        name (str): name of the drone
+        current_pos (tuple): current position of the drone (x, y)
+        orientation (int): orientation of the drone (90 = North, 0 = East, 270 = South, 180 = West)
+        steps_taken (int): number of steps taken by the drone
+        prev_turn_angle (int): angle of the last turn the drone made
+    '''
     def __init__(self, name, current_pos):
         self.__name = name
         self.__start_pos = current_pos
@@ -49,6 +62,7 @@ class Drone:
         self.__prev_turn_angle = value
 
     def reset(self):
+        '''Reset the drone to its starting position and orientation'''
         self.__current_pos = self.__start_pos
         self.__orientation = 0
         self.__prev_turn_angle = 0

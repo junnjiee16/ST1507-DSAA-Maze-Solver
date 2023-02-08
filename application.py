@@ -7,13 +7,16 @@ from classes.drone import Drone
 from classes.dronecontroller import DroneController
 from classes.objectstatemanager import ObjectStateManager
 
+from classes.terrainchanger import TerrainChanger
+
 # pathfinder imports
 from classes.lefthandpathfinder import LeftHandPathfinder
 from classes.shortestpathfinder import ShortestPathfinder
+from classes.travellingsalesmanpathfinder import TravellingSalesmanPathfinder
 
 # graphics related imports
-from graphics.sprite import Sprite
-from graphics.renderer import Renderer
+from classes.sprite import Sprite
+from classes.renderer import Renderer
 
 # user interaction imports
 from classes.gui import GUI
@@ -21,6 +24,18 @@ from classes.gui import GUI
 
 # class to control the logic of the program
 class Application:
+    """
+    This class contols the logic of the program
+    Parameters:
+        program_name (str):
+        authors (str):
+        class_name (str):
+    Attributes:
+        program_name (str):
+        authors (str):
+        class_name (str):
+        title (str):
+    """
     # metadata for the program
     def __init__(self, program_name, authors, class_name):
         self.program_name = program_name
@@ -30,7 +45,13 @@ class Application:
 
 
     def startProgram(self):
-
+        """
+        This the main method of the main program and runs the program logic.
+        Parameters:
+            file_name (str): name of the map file to be read
+        Returns:
+            None
+        """
         # create turtle screen and display title
         window = turtle.Screen()
 
@@ -60,8 +81,14 @@ class Application:
         # get graph from map
         map_graph = Utils.map_to_graph(map)
 
+        # instantiate terrain changer object
+        terrain_changer = TerrainChanger(map, map_graph)
+
         # instantiate lefthand and shortest pathfinder objects
         pathfinders = ObjectStateManager([LeftHandPathfinder(), ShortestPathfinder()])
+
+        # tsp pathfinder is initialized outside the object state manager, as it is not required to be cycled through
+        tsp_pathfinder = TravellingSalesmanPathfinder()
 
         solution = pathfinders.current.solve(map_graph)
 
@@ -108,16 +135,14 @@ class Application:
         ### series of commands to be executed on key press
 
         # this activates on "m" key press, it moves the drone, renders new position and updates the title bar
-        gui.move_drone_event_listener(drone_controller, renderer.render_drone, drone, pathfinders)
+        gui.move_drone_event_listener(drone_controller, renderer, drone, pathfinders, terrain_changer, map_graph)
 
         # this activates on "Tab" key press, it changes the pathfinder algorithm and updates the title bar
         gui.change_algorithm_event_listener(drone_controller, renderer, drone, pathfinders, map_graph)
 
-        # this activates random obstacles to be placed
-        gui.random_obstacles_event_listener()
+        # this activates the TSP algorithm, once this is activated, Tab out is disabled
+        gui.tsp_event_listener(drone_controller, renderer, drone, tsp_pathfinder)
 
-        # this activates random maze to be placed
-        gui.random_maze_event_listener()
 
         # listen for key presses
         window.onkey(
@@ -132,21 +157,22 @@ class Application:
             gui.command_change_algorithm, "Tab"
         )
 
-        # # Extra feature activation keys (Jun Jie)
-        # window.onkey(
-        #     gui.command_activate_multiple_endpoints_problem, "q"
-        # )
-
+        # Extra feature activation keys (Jun Jie)
         window.onkey(
-            gui.command_activate_random_obstacles, "w"
+            gui.command_activate_tsp, "1"
         )
 
         window.onkey(
-            gui.command_activate_random_maze, "e"
+            gui.command_activate_random_obstacles, "2"
+        )
+
+        # Extra feature activation keys (Tim)
+        window.onkey(
+            gui.command_activate_random_maze, "3"
         )
 
         # window.onkey(
-        #     gui.2nd_feature, "r"
+        #     gui.2nd_feature, "4"
         # )
 
         window.listen()

@@ -3,17 +3,38 @@ from classes.pathfinder import Pathfinder
 
 # inherit pathfinder class
 class ShortestPathfinder(Pathfinder):
+    '''
+    This class implements the shortest path algorithm.
+    Attributes:
+        algorithm_name (str): name of the algorithm
+    '''
     def __init__(self):
         super().__init__()
         self._algorithm_name = "Shortest Path Algorithm"
         self._id = 1
 
-    def solve(self, map_graph):
-        if self._solution != None:
+        # use manhattan distance as heuristic
+        self.__heuristic = lambda u, v: abs(u[0] - v[0]) + abs(u[1] - v[1])
+
+    def solve(self, map_graph, update_solution=False, drone_orientation=None):
+        '''
+        This method finds the shortest path from the start node to the end node.
+        Parameters:
+            map_graph (Graph): graph object
+        Returns:
+            None
+        '''
+        if self._solution != None and update_solution == False:
             return self._solution
 
         elif nx.has_path(map_graph, map_graph.start_pos, map_graph.end_pos):
-            path = nx.shortest_path(map_graph, map_graph.start_pos, map_graph.end_pos)
+
+            if map_graph.number_of_nodes() < 50:
+                print("Using Dijkstra's algorithm")
+                path = nx.shortest_path(map_graph, map_graph.start_pos, map_graph.end_pos) # djiksra's algorithm
+            else:
+                print("Using A* algorithm")
+                path = nx.astar_path(map_graph, map_graph.start_pos, map_graph.end_pos, heuristic=self.__heuristic)
 
             # convert path to route instructions
             route_instructions = []
@@ -31,7 +52,10 @@ class ShortestPathfinder(Pathfinder):
 
             compass = [facingNorth, facingEast, facingSouth, facingWest]
 
-            index = 1 # default orientation is east
+            if drone_orientation == None:
+                index = 1 # default orientation is east
+            else:
+                index = orientation.index(drone_orientation)
 
             for i in range(len(path) - 1): # -1 as we don't need to check the last node
                 current_direction = compass[index] # default orientation is east for turtle

@@ -2,6 +2,22 @@ import os
 import random
 
 class MazeGenerator:
+    '''
+    Class to generate a maze with DFS algorithm.
+    Parameters:
+        width (int): width of the maze
+        height (int): height of the maze
+    Attributes:
+        width (int): width of the maze
+        height (int): height of the maze
+        maze (list): 2D array of 0s and 1s, 0s represent walls, 1s represent open spaces
+        visited (list): 2D array of booleans, True if the cell has been visited, False otherwise
+        directions (list): list of directions to move in
+        dx (list): list of x coordinates of the directions
+        dy (list): list of y coordinates of the directions
+        start (tuple): tuple of x and y coordinates of the start position
+        end (tuple): tuple of x and y coordinates of the end position
+    '''
     def __init__(self, width, height):
         self.width = width
         self.height = height

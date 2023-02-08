@@ -3,7 +3,7 @@ import turtle
 # renderer class to render graphics object on the screen
 class Renderer:
     def __init__(self, pixel_size):
-        self.graphics_assets = dict()
+        self.__graphics_assets = dict()
         self.__pixel_size = pixel_size # pixel size of each unit space on the map
 
         # calculate how much to offset the map so that it will be centered on the screen
@@ -19,18 +19,17 @@ class Renderer:
 
     # store the graphic representation of the sprite in the dictionary
     def add_sprite(self, sprite):
-        self.graphics_assets[sprite.name] = sprite
+        self.__graphics_assets[sprite.name] = sprite
 
 
     # re render this on every new algo
     def render_no_solution(self, solution):
-        writer = self.graphics_assets['writer']
+        writer = self.__graphics_assets['writer']
+        writer.clear()
         if solution == []:
             writer.goto(-self.__offset_x - (self.__pixel_size / 2), self.__map_max_height + 25)
             writer.write("No solution for this maze!", font=("Arial", 12, "normal"))
-        else:
-            writer.clear()
-
+            
 
     def render_title(self, title):
         # create a new turtle object to draw the title
@@ -59,10 +58,10 @@ class Renderer:
         self.__calculate_map_max_height(map.y_length)
 
         # get all the sprites
-        wall = self.graphics_assets["wall"]
-        road = self.graphics_assets["road"]
-        start = self.graphics_assets["startpoint"]
-        end = self.graphics_assets["endpoint"]
+        wall = self.__graphics_assets["wall"]
+        road = self.__graphics_assets["road"]
+        start = self.__graphics_assets["startpoint"]
+        end = self.__graphics_assets["endpoint"]
 
         # get map layout
         map_layout = map.layout
@@ -100,7 +99,7 @@ class Renderer:
 
 
     def reset_drone(self, drone):
-        drone_sprite = self.graphics_assets[drone.name]
+        drone_sprite = self.__graphics_assets[drone.name]
         drone_sprite.reset()
 
 
@@ -109,7 +108,7 @@ class Renderer:
             Updates the location and orientation given DroneSprite object on the screen. 
         '''
         ### Update its location and orientation
-        drone_sprite = self.graphics_assets[drone.name]
+        drone_sprite = self.__graphics_assets[drone.name]
 
         # if spawn is true, renders drone sprite immediately at the current position of drone
         if spawn:
@@ -144,25 +143,34 @@ class Renderer:
 
     def render_guidelight(self, solution):
         # load the guide light sprite
-        guide_light = self.graphics_assets["guidelight"]
+        guide_light = self.__graphics_assets["guidelight"]
         for i in range(len(solution) - 1): # minus 1 because we dont want the guidelight to cover up the end point
             if type(solution[i]) == tuple:
                 guide_light.goto(solution[i][0] * self.__pixel_size - self.__offset_x, solution[i][1] * self.__pixel_size - self.__offset_y)
                 guide_light.stamp()
 
     def clear_guidelight(self):
-        guide_light = self.graphics_assets["guidelight"]
+        guide_light = self.__graphics_assets["guidelight"]
         guide_light.clear()
 
 
     def render_dronetrail(self, drone_name):
-        drone_sprite = self.graphics_assets[drone_name]
+        drone_sprite = self.__graphics_assets[drone_name]
         drone_sprite.pendown()
 
     def clear_dronetrail(self, drone_name):
-        drone_sprite = self.graphics_assets[drone_name]
+        drone_sprite = self.__graphics_assets[drone_name]
         drone_sprite.clear()
         drone_sprite.penup()
+
+
+    def render_map_block(self, x, y, block_type):
+        # render a block on the map
+        if block_type == "wall":
+            block = self.__graphics_assets["wall"]
+        
+        block.goto(x * self.__pixel_size - self.__offset_x, y * self.__pixel_size - self.__offset_y)
+        block.stamp()
 
 
     def __calculate_offset(self, map_x_length, map_y_length):

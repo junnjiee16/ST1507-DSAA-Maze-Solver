@@ -9,8 +9,8 @@ class LeftHandPathfinder(Pathfinder):
         self._id = 0
 
 
-    def solve(self, map_graph):
-        if self._solution != None:
+    def solve(self, map_graph, update_solution=False, drone_orientation=None):
+        if self._solution != None and update_solution == False:
             return self._solution
 
         elif nx.has_path(map_graph, map_graph.start_pos, map_graph.end_pos) == False:
@@ -44,10 +44,13 @@ class LeftHandPathfinder(Pathfinder):
             turn = [-1, 0, 1, 2]
             turn_angle = [-90, 0, 90, 180]
 
-            # set starting orientation to east (index of 1), this is default orientation the pen will face in turtle when it first starts
+            # if not speified, set starting orientation to east (index of 1), this is default orientation the pen will face in turtle when it first starts
             # keep track of index in compass array, so that we can get index in O(1) time instead of using .index() which is O(n)
             # when changing index, always mod by 4 to keep it within range
-            index = 1
+            if drone_orientation == None:
+                index = 1
+            else:
+                index = orientation.index(drone_orientation)
             
             # keep finding the next node to go to until we reach the end
             while (x, y) != map_graph.end_pos:

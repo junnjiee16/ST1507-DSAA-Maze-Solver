@@ -1,8 +1,8 @@
 XXXXXXXXXXXXX
 X...........X
-X..s........X
+X..s...e....X
 X...........X
 X..........eX
 X...........X
-X...........X
+X..e........X
 XXXXXXXXXXXXX

@@ -1,5 +1,15 @@
 # execute instructions to drive the drone. Controller is unique to each drone
 class DroneController:
+    '''
+    Controller to execute instructions (the maze solution) for the drone.
+    Parameters:
+        drone (Drone): drone object to be controlled
+        instructions (list): list of instructions to be executed by the drone
+    Attributes:
+        drone (Drone): drone object to be controlled
+        instructions (list): list of instructions to be executed by the drone
+        current_instruction (int): index of the current instruction to be executed
+    '''
     def __init__(self, drone, instructions=None):
         self.__drone = drone
         self.__instructions = instructions
@@ -9,6 +19,10 @@ class DroneController:
     def instructions(self):
         return self.__instructions
 
+    @property
+    def existing_instructions(self):
+        return self.__instructions[self.__current_instruction:]
+
     @instructions.setter
     def instructions(self, value):
         self.__instructions = value
@@ -16,6 +30,11 @@ class DroneController:
 
     # move drone and update drone status
     def execute_instruction(self):
+        '''
+        Move drone and update drone status.
+        Returns:
+            bool: True if there are no more instructions to be executed, False otherwise
+        '''
         # check if there are still instructions to be executed
         if self.__current_instruction < len(self.__instructions):
             # get the next instruction

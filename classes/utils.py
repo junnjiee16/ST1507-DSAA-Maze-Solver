@@ -4,9 +4,19 @@ from classes.mapgraph import MapGraph
 
 # class to store general functions to support the application
 class Utils:
+    '''
+    This class contains general functions to support the application.
+    '''
     # takes in the processed map text and converts it to a graph
     def map_to_graph(map):
-
+        '''
+        This function takes in the processed map text and converts it to a graph.
+        
+        Parameters:
+            map (Map): map object
+        Returns:
+            graph (MapGraph): graph object
+        '''
         # Create an empty graph
         graph = MapGraph(map.start_pos, map.end_pos)
 
@@ -43,7 +53,14 @@ class Utils:
         return graph
 
     # reads the text file and returns the content as a string
-    def readMapFile(filename):
+    def readMapFile(filename, multiple_endpoints=False):
+        '''
+        This function reads the map file and returns the content as a string.
+        Parameters:
+            filename (str): name of the file
+        Returns:
+            content (str): content of the file
+        '''
         # get the directory of the absolute path leading to the script it is running on (so it will be correct when another script imports this)
         path = os.path.dirname(os.path.abspath(sys.argv[0]))
         print(path)
@@ -57,6 +74,7 @@ class Utils:
                 content = f.read()
             
             content = content.splitlines() # split the content into lines
+            
 
             # array of possible characters in the map
             possible_chars = ['X', 's', 'e', '.']
@@ -66,6 +84,9 @@ class Utils:
             start_point = None
             end_point = None
             for y in range(len(content)):
+                # split the line into characters
+                content[y] = list(content[y])
+
                 for x in range(len(content[y])):
                     if content[y][x] not in possible_chars:
                         print("Error: Invalid character in map")
@@ -80,7 +101,7 @@ class Utils:
                             start_point = (x, reversed_y)
 
                     elif content[y][x] == 'e':
-                        if end_point != None:
+                        if end_point != None and multiple_endpoints == False:
                             print("Error: Multiple end points in map")
                             return None, None, None
                         else:
